@@ -31,7 +31,7 @@ public class Application {
 	public static void main(String[] args) {
 		sc = new Scanner(System.in);
 
-//		connexion();
+		connexion();
 
 		sc.close();
 	}
