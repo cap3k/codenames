@@ -31,11 +31,14 @@ public class Application {
 	public static void main(String[] args) {
 		sc = new Scanner(System.in);
 
-		connexion();
+//		connexion();
 
 		sc.close();
 	}
 
+	
+	
+	
 	/**
 	 * Se connecter avec un nom d'utilisateur et un mot de passe (à saisir)
 	 */
