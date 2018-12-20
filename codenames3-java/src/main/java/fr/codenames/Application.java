@@ -31,7 +31,8 @@ public class Application {
 	public static void main(String[] args) {
 		sc = new Scanner(System.in);
 
-		connexion();
+//		connexion();
+		System.out.println("Hello Marie");
 
 		sc.close();
 	}
