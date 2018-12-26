@@ -32,6 +32,9 @@ public class Partie {
 	
 	@OneToMany(mappedBy="partie")
 	private List<Message> messages;
+	
+	@OneToMany(mappedBy="partie")
+	private List<Participation> participation;
 
 	public int getId() {
 		return id;
