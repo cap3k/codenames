@@ -1,8 +1,29 @@
 package fr.codenames.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "message")
+
 public class Message {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "MES_ID")
 	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name="MES_PARTIE_ID")
 	private Partie partie;
+	
+	@ManyToOne
+	@JoinColumn(name = "MES_JOUEUR_ID")
 	private Joueur joueur;
 
 	public int getId() {

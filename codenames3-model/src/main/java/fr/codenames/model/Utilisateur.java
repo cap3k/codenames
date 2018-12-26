@@ -1,10 +1,44 @@
 package fr.codenames.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name = "utilisateur")
+
 public abstract class Utilisateur {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "UTI_ID")
 	private int id;
+	
+	@Column(name="UTI_NOM", length=100, nullable=false)
+	@NotEmpty
+	@NotNull
+	@Size(max=100)
 	private String nom;
+	
+	@Column(name="UTI_PRENOM", length=100, nullable=false)
+	@NotEmpty
+	@NotNull
+	@Size(max=100)
 	private String prenom;
+	
+	@Column(name="UTI_USERNAME", length=100, nullable=false)
+	@NotEmpty
+	@NotNull
+	@Size(max=100)
 	private String username;
+	
+	@Column(name="UTI_PASSWORD", nullable=false, length=300)
+	@NotEmpty
 	private String password;
 
 	public int getId() {
