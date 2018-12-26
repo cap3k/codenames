@@ -1,11 +1,36 @@
 package fr.codenames.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="grille")
 public class Grille {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="GRI_ID")
 	private int id;
-	private ArrayList<Case> cases;
+	
+	@OneToMany(mappedBy="grille")
+	private List<Partie> parties;
+	
+	
+	@Column(name="GRI_DIFFICULTE")
 	private Difficulte difficulte;
+	
+	@OneToMany(mappedBy="grille")
+	private List<Case> cases;
 
 	public int getId() {
 		return id;
@@ -15,13 +40,6 @@ public class Grille {
 		this.id = id;
 	}
 
-	public ArrayList<Case> getCases() {
-		return cases;
-	}
-
-	public void setCases(ArrayList<Case> cases) {
-		this.cases = cases;
-	}
 
 	public Difficulte getDifficulte() {
 		return difficulte;
