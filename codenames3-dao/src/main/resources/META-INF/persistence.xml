@@ -6,16 +6,16 @@
 	<persistence-unit name="SurfyPU" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-		<class>fr.formation.model.Administrateur</class>
-		<class>fr.formation.model.Carte</class>
-		<class>fr.formation.model.Client</class>
-		<class>fr.formation.model.Case</class>
-		<class>fr.formation.model.Grille</class>
-		<class>fr.formation.model.Joueur</class>
-		<class>fr.formation.model.Message</class>
-		<class>fr.formation.model.Participation</class>
-		<class>fr.formation.model.Partie</class>
-		<class>fr.formation.model.Utilisateur</class>
+		<class>fr.codenames.model.Administrateur</class>
+		<class>fr.codenames.model.Carte</class>
+		<class>fr.codenames.model.Client</class>
+		<class>fr.codenames.model.Case</class>
+		<class>fr.codenames.model.Grille</class>
+		<class>fr.codenames.model.Joueur</class>
+		<class>fr.codenames.model.Message</class>
+		<class>fr.codenames.model.Participation</class>
+		<class>fr.codenames.model.Partie</class>
+		<class>fr.codenames.model.Utilisateur</class>
 
 		<properties>
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/codenames_db?serverTimezone=UTC" />
