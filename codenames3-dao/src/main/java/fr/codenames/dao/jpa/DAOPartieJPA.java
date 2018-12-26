@@ -2,29 +2,28 @@ package fr.codenames.dao.jpa;
 
 import java.util.List;
 
-import fr.codenames.dao.IDAOCarte;
-import fr.codenames.model.Carte;
-import fr.codenames.model.Grille;
+import fr.codenames.dao.IDAOPartie;
+import fr.codenames.model.Partie;
 
 
-public class DAOCarteJPA extends DAOJPA implements IDAOCarte {
+public class DAOPartieJPA extends DAOJPA implements IDAOPartie {
 
 	@Override
-	public List<Carte> findAll() {
+	public List<Partie> findAll() {
 		// TODO Auto-generated method stub
 		return em
-				.createQuery("select c from grille c", Carte.class)
+				.createQuery("select p from partie p", Partie.class)
 				.getResultList();
 	}
 
 	@Override
-	public Carte findById(int id) {
+	public Partie findById(int id) {
 		// TODO Auto-generated method stub
-		return em.find(Carte.class, id);
+		return em.find(Partie.class, id);
 	}
 
 	@Override
-	public Carte save(Carte entity) {
+	public Partie save(Partie entity) {
 		// TODO Auto-generated method stub
 		//On démarre la transaction
 				em.getTransaction().begin();
@@ -44,7 +43,7 @@ public class DAOCarteJPA extends DAOJPA implements IDAOCarte {
 	}
 
 	@Override
-	public void delete(Carte entity) {
+	public void delete(Partie entity) {
 		// TODO Auto-generated method stub
 		em.remove(em.merge(entity));
 	}
@@ -52,10 +51,9 @@ public class DAOCarteJPA extends DAOJPA implements IDAOCarte {
 	@Override
 	public void deleteById(int id) {
 		// TODO Auto-generated method stub
-		Carte myCarte = new Carte();
-		myCarte.setId(id);
-		this.delete(myCarte);
+		Partie myPartie = new Partie();
+		myPartie.setId(id);
+		this.delete(myPartie);
 	}
 
-	
 }
