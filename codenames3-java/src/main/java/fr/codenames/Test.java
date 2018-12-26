@@ -27,7 +27,7 @@ public class Test {
 		System.out.print("Indiquer votre nom : ");
 		myJoueur.setNom(sc.nextLine());
 
-		System.out.print("Indiquer votre prénom : ");
+		System.out.print("Indiquer votre prï¿½nom : ");
 		myJoueur.setPrenom(sc.nextLine());
 
 		System.out.print("Indiquer votre pseudo : ");
@@ -44,7 +44,7 @@ public class Test {
 		}
 
 		catch (NonUniqueUsernameException e) {
-			System.out.println("Le nom d'utilisateur est déjà utilisé !");
+			System.out.println("Le nom d'utilisateur est dï¿½jï¿½ utilisï¿½ !");
 		}
 
 

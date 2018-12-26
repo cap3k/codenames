@@ -3,6 +3,7 @@ package fr.codenames.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,7 +33,7 @@ public class Grille {
 	@Enumerated(EnumType.ORDINAL)
 	private Difficulte difficulte;
 	
-	@OneToMany(mappedBy="grille")
+	@OneToMany(mappedBy="grille", cascade = CascadeType.PERSIST)
 	private List<Case> cases;
 
 	public int getId() {
@@ -50,5 +51,13 @@ public class Grille {
 
 	public void setDifficulte(Difficulte difficulte) {
 		this.difficulte = difficulte;
+	}
+	
+	public void generer25Cases(List<Carte> cartesRandom) {
+		for(int i=0; i<25; i++) {
+			this.cases.get(i).setCarte(cartesRandom.get(i));
+			this.cases.get(i).setCouleur(Couleur.BLEUE);
+		}
+		
 	}
 }
