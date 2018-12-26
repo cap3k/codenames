@@ -1,6 +1,5 @@
 package fr.codenames.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,7 +14,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="partie")
 public class Partie {
-	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
