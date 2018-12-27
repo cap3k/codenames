@@ -54,9 +54,9 @@ public class Test {
 
 		
 		saveGrille();
-		//saveListeDeCarte(listeDeMots);
+//		saveListeDeCarte(listeDeMots);
 //		savePartie();
-		
+//		List<Carte> test = daoCarte.findAll();
 		sc.close();
 		
 		daoUtilisateur.close();

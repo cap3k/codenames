@@ -38,22 +38,7 @@ public class Application {
 //		connexion();
 
 	}
-
-	
-	// liste de mots aléatoire
-	
-	/** Ajouter une liste de cartes */
-	List<String> listeDeMots=Arrays. asList("brass","painstaking","precious","regular","mysterious","lunchroom","enjoy","whirl","store","calculate","sparkle","cart","previous","whip","upbeat","girl","grease","order","steady","rod","cowardly","utopian","mint","drawer","reading","try","coal","greedy","psychedelic","efficacious","amazing","bomb","remarkable","puncture","pets","week","dizzy","rambunctious","simplistic","overconfident","route","annoyed","handsome","yam","carriage","coil","dust","resolute","tramp","moaning","bore","desk","raise","hang","tacky","suit","type","cheese","wriggle","finger","unfasten","position","alluring","inconclusive","expand","knot","early","receipt","linen","breath","jeans","ticket","tickle","aboriginal","hulking","fantastic","chew","frog","sand","balance","produce","drag","watery","insurance","tooth","nation","screeching","zesty","metal","death","debt","nice","separate","squealing","request","tart","cold","mindless","spade");
-	
-	public static void addListeDeCarte(List<String> listeDeMots) {
-		for(int i=0; i<listeDeMots.size();i++) {
-			List<Carte> listeDeCarte=new ArrayList<Carte>();
-			Carte myCarte = new Carte();
-			Collections.shuffle(listeDeMots);
-			myCarte.setLibelle(listeDeMots.get(i));
-			listeDeCarte.add(myCarte);
-		}
-	}
+		
 	
 	/**
 	 * Se connecter avec un nom d'utilisateur et un mot de passe (à saisir)
