@@ -1,6 +1,5 @@
 package fr.codenames;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -278,8 +277,9 @@ public class Test {
 	
 	/** 
 	 * Ajouter une grille 
+	 * @return 
 	 */
-	public static void saveGrille() {
+	public static Grille saveGrille() {
 		System.out.print("indiquer le niveau de difficult� entre 1 et 3 : ");
 		int i = sc.nextInt();
 		Difficulte d =Difficulte.values()[i - 1];
