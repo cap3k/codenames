@@ -276,7 +276,10 @@ public class Test {
 		}
 	}
 	
-	public static Grille saveGrille() {
+	/** 
+	 * Ajouter une grille 
+	 */
+	public static void saveGrille() {
 		System.out.print("indiquer le niveau de difficult� entre 1 et 3 : ");
 		int i = sc.nextInt();
 		Difficulte d =Difficulte.values()[i - 1];
