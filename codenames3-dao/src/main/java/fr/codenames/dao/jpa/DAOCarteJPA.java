@@ -15,6 +15,7 @@ public class DAOCarteJPA extends DAOJPA implements IDAOCarte {
 		return em
 				.createQuery("select c from Carte c", Carte.class)
 				.getResultList();
+		
 	}
 
 	@Override

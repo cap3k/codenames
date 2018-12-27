@@ -5,11 +5,27 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import fr.codenames.dao.*;
-import fr.codenames.dao.jpa.*;
-import fr.codenames.model.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import fr.codenames.dao.IDAOCarte;
+import fr.codenames.dao.IDAOGrille;
+import fr.codenames.dao.IDAOPartie;
+import fr.codenames.dao.IDAOUtilisateur;
+import fr.codenames.dao.jpa.DAOCarteJPA;
+import fr.codenames.dao.jpa.DAOGrilleJPA;
+import fr.codenames.dao.jpa.DAOPartieJPA;
+import fr.codenames.dao.jpa.DAOUtilisateurJPA;
 import fr.codenames.exception.AccountLockedException;
 import fr.codenames.exception.NonUniqueUsernameException;
+import fr.codenames.model.Carte;
+import fr.codenames.model.Case;
+import fr.codenames.model.Difficulte;
+import fr.codenames.model.Grille;
+import fr.codenames.model.Joueur;
+import fr.codenames.model.Partie;
+import fr.codenames.model.Utilisateur;
 import fr.codenames.exception.UsernameOrPasswordNotFoundException;
 
 
@@ -26,7 +42,7 @@ public class Test {
 		
 		sc = new Scanner(System.in);
 		
-		connexion();
+//		connexion();
 
 //		List<String> listeDeMots = Arrays.asList("brass", "painstaking", "precious", "regular", "mysterious",
 //				"lunchroom", "enjoy", "whirl", "store", "calculate", "sparkle", "cart", "previous", "whip", "upbeat",
@@ -41,11 +57,13 @@ public class Test {
 //				"mindless", "spade");
 
 		
-		saveGrille();
+//		saveGrille();
 //		saveListeDeCarte(listeDeMots);
 //		savePartie();
 //		List<Carte> test = daoCarte.findAll();
-		sc.close();
+//		sc.close();
+		Joueur j = new Joueur();
+		JoueurDonneurDeMot(addPartie(j));
 		
 		daoUtilisateur.close();
 		daoCarte.close();
@@ -224,9 +242,31 @@ public class Test {
 		}
 	}
 	
-	/** 
-	 * Ajouter une liste de cartes 
-	 */
+	public static Partie addPartie(Joueur j) {
+		
+		Partie p = new Partie();
+		DAOPartieJPA daoPartieJPA = new DAOPartieJPA();
+		p.setCapitaine(j);
+		p.setGrille(saveGrille());
+		daoPartieJPA.save(p);
+		return p;
+	}
+	
+	
+	
+	public static List<Case> JoueurDonneurDeMot(Partie p) {
+		
+			 EntityManagerFactory emf = Persistence.createEntityManagerFactory("codeNamesPU");
+			 EntityManager em = emf.createEntityManager();
+			 List<Case> result = em.createQuery("select c From Case c left join c.carte car where c.grille="+p.getGrille().getId(), Case.class)
+				.getResultList();
+		
+			 return result;
+		
+		
+	}
+	
+	/** Ajouter une liste de cartes */
 	public static void saveListeDeCarte(List<String> listeDeMots) {
 		DAOCarteJPA newDAOcarte = new DAOCarteJPA();
 		for (int i = 0; i < listeDeMots.size(); i++) {
@@ -236,19 +276,16 @@ public class Test {
 		}
 	}
 	
-	/** 
-	 * Ajouter une grille 
-	 */
-	public static void addGrille() {
+	public static Grille saveGrille() {
 		System.out.print("indiquer le niveau de difficult� entre 1 et 3 : ");
 		int i = sc.nextInt();
 		Difficulte d =Difficulte.values()[i - 1];
-		System.out.println("test");
 		Grille newGrille = new Grille();
 		List<Carte> lesCartes = daoCarte.findAll();
 		Collections.shuffle(lesCartes);
 		newGrille.setDifficulte(d);
 		newGrille.generer25Cases(lesCartes, d);
 		newDAOgrille.save(newGrille);
+		return newGrille;
 	}
 }

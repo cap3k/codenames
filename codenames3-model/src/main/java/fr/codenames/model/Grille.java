@@ -73,6 +73,7 @@ public class Grille {
 				Case case1 = new Case();
 				case1.setCarte(cartesRandom.get(i));
 				case1.setCouleur(Couleur.BLEUE);
+				case1.setGrille(this);
 				les25cases.add(case1);
 			}
 
@@ -80,6 +81,7 @@ public class Grille {
 				Case case1 = new Case();
 				case1.setCarte(cartesRandom.get(i));
 				case1.setCouleur(Couleur.ROUGE);
+				case1.setGrille(this);
 				les25cases.add(case1);
 			}
 
@@ -87,6 +89,7 @@ public class Grille {
 				Case case1 = new Case();
 				case1.setCarte(cartesRandom.get(i));
 				case1.setCouleur(Couleur.NEUTRE);
+				case1.setGrille(this);
 				les25cases.add(case1);
 			}
 
@@ -94,6 +97,7 @@ public class Grille {
 				Case case1 = new Case();
 				case1.setCarte(cartesRandom.get(i));
 				case1.setCouleur(Couleur.NOIRE);
+				case1.setGrille(this);
 				les25cases.add(case1);
 			}
 			
