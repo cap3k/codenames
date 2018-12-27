@@ -1,8 +1,11 @@
 package fr.codenames.dao.jpa;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import fr.codenames.dao.IDAOUtilisateur;
 import fr.codenames.exception.AccountLockedException;
@@ -16,7 +19,7 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 
 	@Override
 	public List<Utilisateur> findAll() {
-		return em.createQuery("select p from Produit p", Utilisateur.class).getResultList();
+		return em.createQuery("select j from Joueur j", Utilisateur.class).getResultList();
 	}
 
 	@Override
@@ -61,8 +64,35 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 	@Override
 	public Utilisateur auth(String username, String password)
 			throws UsernameOrPasswordNotFoundException, AccountLockedException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		try {
+			TypedQuery<Joueur> myQueryJ = em.createQuery(
+					"select j from Joueur j where j.username = :userName and j.password = :pwd", Joueur.class);
+			myQueryJ.setParameter("userName", username);
+			myQueryJ.setParameter("pwd", password);
 
+			Joueur monJoueur = myQueryJ.getSingleResult();
+			if (monJoueur.isBanni()) {
+				System.out.println("banni!");
+				throw new AccountLockedException();
+			}
+			System.out.println("bienvenu joueur");
+			return monJoueur;
+			
+		} catch (NoResultException e) {
+			try {
+				TypedQuery<Administrateur> myQueryA = em.createQuery(
+						"select a from Administrateur a where a.username = :userName and a.password = :pwd",
+						Administrateur.class);
+				myQueryA.setParameter("userName", username);
+				myQueryA.setParameter("pwd", password);
+				Administrateur monAdmin = myQueryA.getSingleResult();
+				System.out.println("bienvenu admin");
+				return monAdmin;
+				
+			} catch (Exception e2) {
+				throw new UsernameOrPasswordNotFoundException();
+			}
+
+		}
+	}
 }
