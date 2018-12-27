@@ -13,7 +13,7 @@ public class DAOCarteJPA extends DAOJPA implements IDAOCarte {
 	public List<Carte> findAll() {
 		// TODO Auto-generated method stub
 		return em
-				.createQuery("select c from grille c", Carte.class)
+				.createQuery("select c from Carte c", Carte.class)
 				.getResultList();
 	}
 
@@ -45,17 +45,18 @@ public class DAOCarteJPA extends DAOJPA implements IDAOCarte {
 
 	@Override
 	public void delete(Carte entity) {
+		em.getTransaction().begin();
 		// TODO Auto-generated method stub
 		em.remove(em.merge(entity));
+		em.getTransaction().commit();
 	}
 
 	@Override
 	public void deleteById(int id) {
+		
 		// TODO Auto-generated method stub
 		Carte myCarte = new Carte();
 		myCarte.setId(id);
 		this.delete(myCarte);
 	}
-
-	
 }
