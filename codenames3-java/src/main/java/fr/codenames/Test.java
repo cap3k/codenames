@@ -1,12 +1,12 @@
 package fr.codenames;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 import fr.codenames.dao.IDAOCarte;
+import fr.codenames.dao.IDAOGrille;
 import fr.codenames.dao.IDAOPartie;
 import fr.codenames.dao.IDAOUtilisateur;
 import fr.codenames.dao.jpa.DAOCarteJPA;
@@ -28,6 +28,7 @@ public class Test {
 	private static IDAOUtilisateur daoUtilisateur = new DAOUtilisateurJPA();
 	private static IDAOCarte daoCarte = new DAOCarteJPA();
 	private static IDAOPartie daoPartie = new DAOPartieJPA();
+	private static IDAOGrille newDAOgrille = new DAOGrilleJPA();
 	private static Utilisateur utilisateur;
 	private static Scanner sc;
 
@@ -35,9 +36,9 @@ public class Test {
 		
 		sc = new Scanner(System.in);
 		
-		connexion();
+		//connexion();
 
-		sc.close();
+		
 		
 		List<String> listeDeMots = Arrays.asList("brass", "painstaking", "precious", "regular", "mysterious",
 				"lunchroom", "enjoy", "whirl", "store", "calculate", "sparkle", "cart", "previous", "whip", "upbeat",
@@ -53,8 +54,10 @@ public class Test {
 
 		
 		saveGrille();
-		saveListeDeCarte(listeDeMots);
+		//saveListeDeCarte(listeDeMots);
 //		savePartie();
+		
+		sc.close();
 		
 		daoUtilisateur.close();
 		daoCarte.close();
@@ -233,10 +236,10 @@ public class Test {
 	}
 	
 	public static void saveGrille() {
-		DAOGrilleJPA newDAOgrille = new DAOGrilleJPA();
-		DAOCarteJPA daoCarte = new DAOCarteJPA();
-		int i=lireEntier();
+		System.out.print("indiquer le niveau de difficulté entre 1 et 3 : ");
+		int i = sc.nextInt();
 		Difficulte d =Difficulte.values()[i - 1];
+		System.out.println("test");
 		Grille newGrille = new Grille();
 		List<Carte> lesCartes = daoCarte.findAll();
 		Collections.shuffle(lesCartes);
