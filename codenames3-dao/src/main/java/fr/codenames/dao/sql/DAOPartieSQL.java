@@ -130,4 +130,11 @@ public class DAOPartieSQL extends DAOSQL implements IDAOPartie {
 	public void delete(Partie entity) {
 		this.deleteById(entity.getId());
 	}
+
+
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
 }

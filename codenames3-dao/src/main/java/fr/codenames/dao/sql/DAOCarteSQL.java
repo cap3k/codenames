@@ -121,4 +121,11 @@ public class DAOCarteSQL extends DAOSQL implements IDAOCarte {
 	public void delete(Carte entity) {
 		this.deleteById(entity.getId());
 	}
+
+
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -34,4 +34,6 @@ public interface IDAO<T> {
 	 * @param id
 	 */
 	public void deleteById(int id);
+	
+	public void close();
 }

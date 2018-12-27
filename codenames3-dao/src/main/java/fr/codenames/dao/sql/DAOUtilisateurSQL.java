@@ -138,4 +138,10 @@ public class DAOUtilisateurSQL extends DAOSQL implements IDAOUtilisateur {
 		
 		return myUtilisateur;
 	}
+
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
 }
