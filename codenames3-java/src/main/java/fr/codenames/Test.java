@@ -5,23 +5,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import fr.codenames.dao.IDAOCarte;
-import fr.codenames.dao.IDAOGrille;
-import fr.codenames.dao.IDAOPartie;
-import fr.codenames.dao.IDAOUtilisateur;
-import fr.codenames.dao.jpa.DAOCarteJPA;
-import fr.codenames.dao.jpa.DAOGrilleJPA;
-import fr.codenames.dao.jpa.DAOPartieJPA;
-import fr.codenames.dao.jpa.DAOUtilisateurJPA;
+import fr.codenames.dao.*;
+import fr.codenames.dao.jpa.*;
+import fr.codenames.model.*;
 import fr.codenames.exception.AccountLockedException;
 import fr.codenames.exception.NonUniqueUsernameException;
-import fr.codenames.model.Carte;
-import fr.codenames.model.Difficulte;
-import fr.codenames.model.Grille;
 import fr.codenames.exception.UsernameOrPasswordNotFoundException;
-import fr.codenames.model.Joueur;
-import fr.codenames.model.Partie;
-import fr.codenames.model.Utilisateur;
+
 
 public class Test {
 	
@@ -36,21 +26,19 @@ public class Test {
 		
 		sc = new Scanner(System.in);
 		
-		//connexion();
+		connexion();
 
-		
-		
-		List<String> listeDeMots = Arrays.asList("brass", "painstaking", "precious", "regular", "mysterious",
-				"lunchroom", "enjoy", "whirl", "store", "calculate", "sparkle", "cart", "previous", "whip", "upbeat",
-				"girl", "grease", "order", "steady", "rod", "cowardly", "utopian", "mint", "drawer", "reading", "try",
-				"coal", "greedy", "psychedelic", "efficacious", "amazing", "bomb", "remarkable", "puncture", "pets", "week",
-				"dizzy", "rambunctious", "simplistic", "overconfident", "route", "annoyed", "handsome", "yam", "carriage",
-				"coil", "dust", "resolute", "tramp", "moaning", "bore", "desk", "raise", "hang", "tacky", "suit", "type",
-				"cheese", "wriggle", "finger", "unfasten", "position", "alluring", "inconclusive", "expand", "knot",
-				"early", "receipt", "linen", "breath", "jeans", "ticket", "tickle", "aboriginal", "hulking", "fantastic",
-				"chew", "frog", "sand", "balance", "produce", "drag", "watery", "insurance", "tooth", "nation",
-				"screeching", "zesty", "metal", "death", "debt", "nice", "separate", "squealing", "request", "tart", "cold",
-				"mindless", "spade");
+//		List<String> listeDeMots = Arrays.asList("brass", "painstaking", "precious", "regular", "mysterious",
+//				"lunchroom", "enjoy", "whirl", "store", "calculate", "sparkle", "cart", "previous", "whip", "upbeat",
+//				"girl", "grease", "order", "steady", "rod", "cowardly", "utopian", "mint", "drawer", "reading", "try",
+//				"coal", "greedy", "psychedelic", "efficacious", "amazing", "bomb", "remarkable", "puncture", "pets", "week",
+//				"dizzy", "rambunctious", "simplistic", "overconfident", "route", "annoyed", "handsome", "yam", "carriage",
+//				"coil", "dust", "resolute", "tramp", "moaning", "bore", "desk", "raise", "hang", "tacky", "suit", "type",
+//				"cheese", "wriggle", "finger", "unfasten", "position", "alluring", "inconclusive", "expand", "knot",
+//				"early", "receipt", "linen", "breath", "jeans", "ticket", "tickle", "aboriginal", "hulking", "fantastic",
+//				"chew", "frog", "sand", "balance", "produce", "drag", "watery", "insurance", "tooth", "nation",
+//				"screeching", "zesty", "metal", "death", "debt", "nice", "separate", "squealing", "request", "tart", "cold",
+//				"mindless", "spade");
 
 		
 		saveGrille();
@@ -62,10 +50,11 @@ public class Test {
 		daoUtilisateur.close();
 		daoCarte.close();
 		daoPartie.close();
+		newDAOgrille.close();
 	}
 	
 	/**
-	 * Se connecter avec un nom d'utilisateur et un mot de passe (ï¿½ saisir)
+	 * Se connecter avec un nom d'utilisateur et un mot de passe (a saisir)
 	 */
 	public static void connexion() {
 		System.out.print("Indiquer le nom d'utilisateur (touche entrer pour s'inscrire) : ");
@@ -81,7 +70,7 @@ public class Test {
 
 		try {
 			utilisateur = daoUtilisateur.auth(username, password);
-			System.out.println("connectï¿½!");
+			System.out.println("connecte!");
 			menu();
 		}
 
@@ -95,14 +84,12 @@ public class Test {
 	}
 
 	public static void inscription() {
-		//IDAOUtilisateur daoUtilisateur = new DAOUtilisateurJPA();
-
 		Joueur myJoueur = new Joueur();
 		System.out.println("---------- INSCRIPTION -----------");
 		System.out.print("Indiquer votre nom : ");
 		myJoueur.setNom(sc.nextLine());
 
-		System.out.print("Indiquer votre prï¿½nom : ");
+		System.out.print("Indiquer votre prenom : ");
 		myJoueur.setPrenom(sc.nextLine());
 
 		System.out.print("Indiquer votre pseudo : ");
@@ -119,7 +106,7 @@ public class Test {
 		}
 
 		catch (NonUniqueUsernameException e) {
-			System.out.println("Le nom d'utilisateur est dï¿½jï¿½ utilisï¿½ !");
+			System.out.println("Le nom d'utilisateur est deja utilise !");
 		}
 	}
 		
@@ -132,9 +119,9 @@ public class Test {
 			System.out.println("10.	Ajouter une carte");
 			System.out.println("11.	Modifier une carte");
 			System.out.println("12.	Supprimer une carte");
-			System.out.println("2.	Dï¿½marrer une nouvelle partie");
+			System.out.println("2.	Demarrer une nouvelle partie");
 			System.out.println("20.	Lister les parties");
-			System.out.println("3.	Se dï¿½connecter");
+			System.out.println("3.	Se deconnecter");
 			System.out.println("----------------------------------");
 			menu = sc.nextInt();
 
@@ -155,6 +142,10 @@ public class Test {
 				deleteCarte();
 				break;
 
+			case 2:
+				addPartie();
+				break;
+				
 			case 20:
 				showParties();
 				break;
@@ -183,7 +174,7 @@ public class Test {
 	public static void addCarte() {
 		Carte myCarte = new Carte();
 
-		System.out.println("Saisir le libellï¿½ de la carte :");
+		System.out.println("Saisir le libelle de la carte :");
 		myCarte.setLibelle(sc.next());
 
 		daoCarte.save(myCarte);
@@ -196,10 +187,10 @@ public class Test {
 		
 		showCartes();
 
-		System.out.print("Choisir la carte ï¿½ modifier : ");
+		System.out.print("Choisir la carte a modifier : ");
 		Carte myCarte = daoCarte.findById(sc.nextInt());
 
-		System.out.print(String.format("Saisir le libellï¿½ de la carte [%s] : ", myCarte.getLibelle()));
+		System.out.print(String.format("Saisir le libelle de la carte [%s] : ", myCarte.getLibelle()));
 		myCarte.setLibelle(sc.next());
 
 		daoCarte.save(myCarte);
@@ -211,8 +202,17 @@ public class Test {
 	public static void deleteCarte() {
 		showCartes();
 
-		System.out.print("Choisir la carte ï¿½ supprimer : ");
+		System.out.print("Choisir la carte a supprimer : ");
 		daoCarte.deleteById(sc.nextInt());
+	}
+	
+	/**
+	 * Crï¿½er une partie
+	 */
+	public static void addPartie() {
+		for (Partie p : daoPartie.findAll()) {
+			System.out.println(p.getId());
+		}
 	}
 
 	/**
@@ -224,8 +224,9 @@ public class Test {
 		}
 	}
 	
-	
-	/** Ajouter une liste de cartes */
+	/** 
+	 * Ajouter une liste de cartes 
+	 */
 	public static void saveListeDeCarte(List<String> listeDeMots) {
 		DAOCarteJPA newDAOcarte = new DAOCarteJPA();
 		for (int i = 0; i < listeDeMots.size(); i++) {
@@ -235,8 +236,11 @@ public class Test {
 		}
 	}
 	
-	public static void saveGrille() {
-		System.out.print("indiquer le niveau de difficulté entre 1 et 3 : ");
+	/** 
+	 * Ajouter une grille 
+	 */
+	public static void addGrille() {
+		System.out.print("indiquer le niveau de difficultï¿½ entre 1 et 3 : ");
 		int i = sc.nextInt();
 		Difficulte d =Difficulte.values()[i - 1];
 		System.out.println("test");
@@ -246,17 +250,5 @@ public class Test {
 		newGrille.setDifficulte(d);
 		newGrille.generer25Cases(lesCartes, d);
 		newDAOgrille.save(newGrille);
-	}
-
-	static int lireEntier() {
-		Scanner myScanner = new Scanner(System.in);
-
-		try {
-			return myScanner.nextInt();
-		}
-
-		catch (Exception ex) {
-			return 0;
-		}
 	}
 }
