@@ -361,7 +361,8 @@ public class Test {
 			System.out.println(i + ". " + result.get(i).getCarte().getLibelle() + " - " + result.get(i).getCouleur());
 			//System.out.println(result.get(i).getCouleur());
 		}
-		System.out.print("Donnez votre mot (indice) : ");
+		System.out.println("Donnez votre mot");
+		sc.nextLine();
 		String mot = sc.nextLine();
 		System.out.println("Et le nombre de mots");
 		int nbDeMots = Integer.parseInt(sc.nextLine());
@@ -380,11 +381,7 @@ public class Test {
 		}
 	}
 
-	/**
-	 * Ajouter une grille
-	 * 
-	 * @return
-	 */
+
 	public static Grille saveGrille() {
 		System.out.print("indiquer le niveau de difficulte entre 1 et 3 : ");
 		int i = sc.nextInt();

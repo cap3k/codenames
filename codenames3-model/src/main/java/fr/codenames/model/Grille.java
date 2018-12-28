@@ -1,6 +1,7 @@
 package fr.codenames.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -45,6 +46,7 @@ public class Grille {
 	
 	public void generer25Cases(List<Carte> cartesRandom, Difficulte d) {
 		 		 
+		    List<Case> les25casesShuffle = new ArrayList<Case> ();
 		    List<Case> les25cases = new ArrayList<Case> ();
 			int m = 9; // nombre de cas a deviner pour l'equipe qui commence
 			Random random = new Random();
@@ -63,7 +65,7 @@ public class Grille {
 				case1.setCarte(cartesRandom.get(i));
 				case1.setCouleur(Couleur.BLEUE);
 				case1.setGrille(this);
-				les25cases.add(case1);
+				les25casesShuffle.add(case1);
 			}
 
 			for (int i = m; i < 17; i++) {
@@ -71,7 +73,7 @@ public class Grille {
 				case1.setCarte(cartesRandom.get(i));
 				case1.setCouleur(Couleur.ROUGE);
 				case1.setGrille(this);
-				les25cases.add(case1);
+				les25casesShuffle.add(case1);
 			}
 
 			for (int i = 17; i < 25 - nbNoire; i++) {
@@ -79,7 +81,7 @@ public class Grille {
 				case1.setCarte(cartesRandom.get(i));
 				case1.setCouleur(Couleur.NEUTRE);
 				case1.setGrille(this);
-				les25cases.add(case1);
+				les25casesShuffle.add(case1);
 			}
 
 			for (int i = 25 - nbNoire; i < 25; i++) {
@@ -87,10 +89,10 @@ public class Grille {
 				case1.setCarte(cartesRandom.get(i));
 				case1.setCouleur(Couleur.NOIRE);
 				case1.setGrille(this);
-				les25cases.add(case1);
+				les25casesShuffle.add(case1);
 			}
-			
-			this.cases=les25cases;
+			Collections.shuffle(les25casesShuffle);
+			this.cases=les25casesShuffle;
 		}
 		
 }
