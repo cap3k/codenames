@@ -1,5 +1,6 @@
 package fr.codenames;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -27,6 +28,8 @@ public class Test {
 
 		sc = new Scanner(System.in);
 
+//		connexion();
+
 		connexion();
 
 //		List<String> listeDeMots = Arrays.asList("brass", "painstaking", "precious", "regular", "mysterious",
@@ -46,7 +49,6 @@ public class Test {
 //		savePartie();
 //		List<Carte> test = daoCarte.findAll();
 //		sc.close();
-//		Joueur j = new Joueur();
 //		JoueurDonneurDeMot(addPartie(j));
 
 		daoUtilisateur.close();
@@ -65,7 +67,6 @@ public class Test {
 
 		if (username.equals("")) {
 			inscription();
-			menu();
 		}
 
 		System.out.print("Indiquer le mot de passe : ");
@@ -75,12 +76,11 @@ public class Test {
 			utilisateur = daoUtilisateur.auth(username, password);
 			System.out.println("connecte!");
 			if (utilisateur.getType() == TypeUtilisateur.values()[1]) {
-				menu();
-			}
-			else {
+				menu(utilisateur);
+			} else {
 				menuAdmin();
 			}
-			
+
 		}
 
 		catch (UsernameOrPasswordNotFoundException e) {
@@ -112,6 +112,7 @@ public class Test {
 
 		try {
 			daoUtilisateur.save(myJoueur);
+			connexion();
 		}
 
 		catch (NonUniqueUsernameException e) {
@@ -133,18 +134,18 @@ public class Test {
 			menu = sc.nextInt();
 
 			switch (menu) {
-			
+
 			case 1:
 				showUsers();
 				break;
 			case 2:
 				banUser();
 				break;
-				
+
 			case 3:
 				unBanUser();
 				break;
-				
+
 			case 4:
 				deleteUser();
 				break;
@@ -157,7 +158,7 @@ public class Test {
 			}
 		} while (menu != 0);
 	}
-	
+
 	/**
 	 * Bannir un utilisateur
 	 */
@@ -165,10 +166,10 @@ public class Test {
 		showUsersUnBan();
 
 		System.out.print("Choisir l'utilisateur a bannir : ");
-		
+
 		daoUtilisateur.banById(sc.nextInt());
 	}
-	
+
 	/**
 	 * ne plus bannir un utilisateur
 	 */
@@ -176,10 +177,10 @@ public class Test {
 		showUsersBan();
 
 		System.out.print("Choisir l'utilisateur a sortir du bannissement : ");
-		
+
 		daoUtilisateur.unBanById(sc.nextInt());
 	}
-	
+
 	/**
 	 * Supprimer un utilisateur
 	 */
@@ -187,10 +188,10 @@ public class Test {
 		showUsers();
 
 		System.out.print("Choisir l'utilisateur a supprimer : ");
-		
+
 		daoUtilisateur.deleteById(sc.nextInt());
 	}
-	
+
 	/**
 	 * Afficher la liste des utilisateurs
 	 */
@@ -199,28 +200,28 @@ public class Test {
 			System.out.println(j.getId() + ". " + j.getNom() + " " + j.getPrenom());
 		}
 	}
-	
+
 	/**
 	 * Afficher la liste des utilisateurs
 	 */
 	public static void showUsersUnBan() {
 		for (Utilisateur j : daoUtilisateur.findAllUnBan()) {
 			System.out.println(j.getId() + ". " + j.getNom() + " " + j.getPrenom());
-			
+
 		}
 	}
-	
+
 	/**
 	 * Afficher la liste des utilisateurs
 	 */
 	public static void showUsersBan() {
 		for (Utilisateur j : daoUtilisateur.findAllBan()) {
 			System.out.println(j.getId() + ". " + j.getNom() + " " + j.getPrenom());
-			
+
 		}
 	}
-	
-	public static void menu() {
+
+	public static void menu(Utilisateur u) {
 		int menu = 0;
 		do {
 			System.out.println("");
@@ -253,7 +254,8 @@ public class Test {
 				break;
 
 			case 2:
-				//addPartie();
+				jouer(addPartie((Joueur) u));
+
 				break;
 
 			case 20:
@@ -325,26 +327,47 @@ public class Test {
 		}
 	}
 
-	/**
-	 * Créer une partie
-	 */
-	public static Partie addPartie(Joueur j) {
+	public static Participation addPartie(Joueur j) {
 
 		Partie p = new Partie();
-		p.setCapitaine(j);
 		p.setGrille(saveGrille());
-		daoPartieJPA.save(p);
-		return p;
+		List<Participation> maParticipation = p.generer6participations(j);
+		daoPartie.save(p);
+		return maParticipation.get(0);
+
 	}
 
-	public static List<Case> JoueurDonneurDeMot(Partie p) {
+	public static void jouer(Participation p) {
+
+		if (p.getRole() == Role.MAITRE) {
+			JoueurDonneurDeMot(p);
+		} else {
+			JouerDevineurDeMot(p);
+		}
+
+	}
+
+	private static void JouerDevineurDeMot(Participation p) {
+		// TODO Auto-generated method stub
+		System.out.println("Donnez votre mot");
+
+	}
+
+	public static List<Case> JoueurDonneurDeMot(Participation p) {
 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("codeNamesPU");
 		EntityManager em = emf.createEntityManager();
 		List<Case> result = em
-				.createQuery("select c From Case c left join c.carte car where c.grille=" + p.getGrille().getId(),
-						Case.class)
+				.createQuery("select c From Case c where c.grille=" + p.getPartie().getGrille().getId(), Case.class)
 				.getResultList();
+		for (int i = 0; i < 25; i++) {
+			System.out.println(result.get(i).getCarte().getLibelle());
+			System.out.println(result.get(i).getCouleur());
+		}
+		System.out.println("Donnez votre mot");
+		String mot = sc.nextLine();
+		System.out.println("Et le nombre de mots");
+		int nbDeMots = Integer.parseInt(sc.nextLine());
 
 		return result;
 

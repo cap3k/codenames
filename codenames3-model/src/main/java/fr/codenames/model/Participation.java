@@ -22,6 +22,28 @@ public class Participation {
 	
 	@Enumerated (EnumType.ORDINAL)
 	private Role role;
+	
+	@Column (name = "PAT_EQUIPE")
+	private Boolean equipe;
+	
+	@Column (name = "PAT_CAPITAINE")
+	private Boolean capitaine;
+
+	public Boolean getCapitaine() {
+		return capitaine;
+	}
+
+	public void setCapitaine(Boolean capitaine) {
+		this.capitaine = capitaine;
+	}
+
+	public Boolean getEquipe() {
+		return equipe;
+	}
+
+	public void setEquipe(Boolean equipe) {
+		this.equipe = equipe;
+	}
 
 	public Partie getPartie() {
 		return partie;
