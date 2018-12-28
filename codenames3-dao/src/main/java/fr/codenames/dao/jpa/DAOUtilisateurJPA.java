@@ -12,7 +12,6 @@ import fr.codenames.exception.AccountLockedException;
 import fr.codenames.exception.UsernameOrPasswordNotFoundException;
 import fr.codenames.model.Administrateur;
 import fr.codenames.model.Joueur;
-import fr.codenames.model.TypeUtilisateur;
 import fr.codenames.model.Utilisateur;
 
 public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
@@ -20,6 +19,16 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 	@Override
 	public List<Utilisateur> findAll() {
 		return em.createQuery("select j from Joueur j", Utilisateur.class).getResultList();
+	}
+	
+	@Override
+	public List<Utilisateur> findAllUnBan() {
+		return em.createQuery("select j from Joueur j where j.banni = 0", Utilisateur.class).getResultList();
+	}
+	
+	@Override
+	public List<Utilisateur> findAllBan() {
+		return em.createQuery("select j from Joueur j where j.banni = 1", Utilisateur.class).getResultList();
 	}
 
 	@Override
@@ -48,17 +57,37 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 
 	@Override
 	public void delete(Utilisateur entity) {
+		em.getTransaction().begin();
 		em.remove(em.merge(entity));
+		em.getTransaction().commit();
 
 	}
 
 	@Override
 	public void deleteById(int id) {
-		Query myQuery = em.createQuery("delete u from Utilisateur u where u.id = :id", Utilisateur.class);
-		// On insère les paramètres
-		myQuery.setParameter("id", id);
 
-		myQuery.executeUpdate();
+		Joueur myJoueur = new Joueur();
+		myJoueur.setId(id);
+		this.delete(myJoueur);
+
+	}
+
+	@Override
+	public void banById(int id) {
+		em.getTransaction().begin();
+		Query myQuery = em.createQuery("UPDATE Joueur j SET j.banni = 1 WHERE j.id = :id");
+		myQuery.setParameter("id", id);
+		int updt = myQuery.executeUpdate();
+		em.getTransaction().commit();
+	}
+	
+	@Override
+	public void unBanById(int id) {
+		em.getTransaction().begin();
+		Query myQuery = em.createQuery("UPDATE Joueur j SET j.banni = 0 WHERE j.id = :id");
+		myQuery.setParameter("id", id);
+		int updt = myQuery.executeUpdate();
+		em.getTransaction().commit();
 	}
 
 	@Override
@@ -77,7 +106,7 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 			}
 			System.out.println("bienvenu joueur");
 			return monJoueur;
-			
+
 		} catch (NoResultException e) {
 			try {
 				TypedQuery<Administrateur> myQueryA = em.createQuery(
@@ -88,7 +117,7 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 				Administrateur monAdmin = myQueryA.getSingleResult();
 				System.out.println("bienvenu admin");
 				return monAdmin;
-				
+
 			} catch (Exception e2) {
 				throw new UsernameOrPasswordNotFoundException();
 			}

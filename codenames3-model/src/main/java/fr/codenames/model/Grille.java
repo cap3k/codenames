@@ -12,8 +12,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -54,7 +52,7 @@ public class Grille {
 		this.difficulte = difficulte;
 	}
 	
-	public void generer25Cases(List<Carte> cartesRandom,Difficulte d) {
+	public void generer25Cases(List<Carte> cartesRandom, Difficulte d) {
 		 		 
 		    List<Case> les25cases = new ArrayList<Case> ();
 			int m = 9; // nombre de cas à deviner pour l'équipe qui commence

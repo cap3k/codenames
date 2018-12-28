@@ -4,7 +4,6 @@ import java.util.List;
 
 import fr.codenames.dao.IDAOCarte;
 import fr.codenames.model.Carte;
-import fr.codenames.model.Grille;
 
 
 public class DAOCarteJPA extends DAOJPA implements IDAOCarte {

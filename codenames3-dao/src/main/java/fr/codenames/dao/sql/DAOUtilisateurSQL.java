@@ -144,4 +144,28 @@ public class DAOUtilisateurSQL extends DAOSQL implements IDAOUtilisateur {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void banById(int nextInt) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Utilisateur> findAllBan() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Utilisateur> findAllUnBan() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void unBanById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
 }

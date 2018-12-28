@@ -2,6 +2,9 @@ package fr.codenames.dao;
 
 import fr.codenames.exception.UsernameOrPasswordNotFoundException;
 import fr.codenames.model.Utilisateur;
+
+import java.util.List;
+
 import fr.codenames.exception.AccountLockedException;
 
 public interface IDAOUtilisateur extends IDAO<Utilisateur> {
@@ -14,4 +17,12 @@ public interface IDAOUtilisateur extends IDAO<Utilisateur> {
 	 * @throws AccountLockedException
 	 */
 	public Utilisateur auth(String username, String password) throws UsernameOrPasswordNotFoundException, AccountLockedException;
+
+	public void banById(int nextInt);
+
+	List<Utilisateur> findAllBan();
+
+	List<Utilisateur> findAllUnBan();
+
+	void unBanById(int id);
 }

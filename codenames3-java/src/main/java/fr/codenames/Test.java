@@ -16,32 +16,33 @@ import fr.codenames.dao.jpa.DAOCarteJPA;
 import fr.codenames.dao.jpa.DAOGrilleJPA;
 import fr.codenames.dao.jpa.DAOPartieJPA;
 import fr.codenames.dao.jpa.DAOUtilisateurJPA;
-import fr.codenames.exception.AccountLockedException;
-import fr.codenames.exception.NonUniqueUsernameException;
 import fr.codenames.model.Carte;
 import fr.codenames.model.Case;
 import fr.codenames.model.Difficulte;
 import fr.codenames.model.Grille;
 import fr.codenames.model.Joueur;
 import fr.codenames.model.Partie;
+import fr.codenames.model.TypeUtilisateur;
 import fr.codenames.model.Utilisateur;
+import fr.codenames.exception.AccountLockedException;
+import fr.codenames.exception.NonUniqueUsernameException;
 import fr.codenames.exception.UsernameOrPasswordNotFoundException;
 
-
 public class Test {
-	
+
 	private static IDAOUtilisateur daoUtilisateur = new DAOUtilisateurJPA();
 	private static IDAOCarte daoCarte = new DAOCarteJPA();
 	private static IDAOPartie daoPartie = new DAOPartieJPA();
 	private static IDAOGrille newDAOgrille = new DAOGrilleJPA();
+	private static IDAOPartie daoPartieJPA = new DAOPartieJPA();
 	private static Utilisateur utilisateur;
 	private static Scanner sc;
 
 	public static void main(String[] args) {
-		
+
 		sc = new Scanner(System.in);
-		
-//		connexion();
+
+		connexion();
 
 //		List<String> listeDeMots = Arrays.asList("brass", "painstaking", "precious", "regular", "mysterious",
 //				"lunchroom", "enjoy", "whirl", "store", "calculate", "sparkle", "cart", "previous", "whip", "upbeat",
@@ -55,28 +56,28 @@ public class Test {
 //				"screeching", "zesty", "metal", "death", "debt", "nice", "separate", "squealing", "request", "tart", "cold",
 //				"mindless", "spade");
 
-		
 //		saveGrille();
 //		saveListeDeCarte(listeDeMots);
 //		savePartie();
 //		List<Carte> test = daoCarte.findAll();
 //		sc.close();
-		Joueur j = new Joueur();
-		JoueurDonneurDeMot(addPartie(j));
-		
+//		Joueur j = new Joueur();
+//		JoueurDonneurDeMot(addPartie(j));
+
 		daoUtilisateur.close();
 		daoCarte.close();
 		daoPartie.close();
 		newDAOgrille.close();
+		daoPartieJPA.close();
 	}
-	
+
 	/**
 	 * Se connecter avec un nom d'utilisateur et un mot de passe (a saisir)
 	 */
 	public static void connexion() {
 		System.out.print("Indiquer le nom d'utilisateur (touche entrer pour s'inscrire) : ");
 		String username = sc.nextLine();
-		
+
 		if (username.equals("")) {
 			inscription();
 			menu();
@@ -88,7 +89,13 @@ public class Test {
 		try {
 			utilisateur = daoUtilisateur.auth(username, password);
 			System.out.println("connecte!");
-			menu();
+			if (utilisateur.getType() == TypeUtilisateur.values()[1]) {
+				menu();
+			}
+			else {
+				menuAdmin();
+			}
+			
 		}
 
 		catch (UsernameOrPasswordNotFoundException e) {
@@ -126,9 +133,110 @@ public class Test {
 			System.out.println("Le nom d'utilisateur est deja utilise !");
 		}
 	}
+
+	public static void menuAdmin() {
+		int menu = 0;
+		do {
+			System.out.println("");
+			System.out.println("------ MENU ADMINISTRATEUR -------");
+			System.out.println("1.	Afficher tous les joueurs");
+			System.out.println("2.	Bannir un joueur");
+			System.out.println("3.	Ne plus bannir un joueur");
+			System.out.println("4.	Supprimer un compte");
+			System.out.println("5.	Se deconnecter");
+			System.out.println("----------------------------------");
+			menu = sc.nextInt();
+
+			switch (menu) {
+			
+			case 1:
+				showUsers();
+				break;
+			case 2:
+				banUser();
+				break;
+				
+			case 3:
+				unBanUser();
+				break;
+				
+			case 4:
+				deleteUser();
+				break;
+
+			case 5:
+				utilisateur = null;
+				menu = 0;
+				System.out.println("Bye!");
+				break;
+			}
+		} while (menu != 0);
+	}
+	
+	/**
+	 * Bannir un utilisateur
+	 */
+	public static void banUser() {
+		showUsersUnBan();
+
+		System.out.print("Choisir l'utilisateur a bannir : ");
 		
+		daoUtilisateur.banById(sc.nextInt());
+	}
+	
+	/**
+	 * ne plus bannir un utilisateur
+	 */
+	public static void unBanUser() {
+		showUsersBan();
+
+		System.out.print("Choisir l'utilisateur a sortir du bannissement : ");
+		
+		daoUtilisateur.unBanById(sc.nextInt());
+	}
+	
+	/**
+	 * Supprimer un utilisateur
+	 */
+	public static void deleteUser() {
+		showUsers();
+
+		System.out.print("Choisir l'utilisateur a supprimer : ");
+		
+		daoUtilisateur.deleteById(sc.nextInt());
+	}
+	
+	/**
+	 * Afficher la liste des utilisateurs
+	 */
+	public static void showUsers() {
+		for (Utilisateur j : daoUtilisateur.findAll()) {
+			System.out.println(j.getId() + ". " + j.getNom() + " " + j.getPrenom());
+		}
+	}
+	
+	/**
+	 * Afficher la liste des utilisateurs
+	 */
+	public static void showUsersUnBan() {
+		for (Utilisateur j : daoUtilisateur.findAllUnBan()) {
+			System.out.println(j.getId() + ". " + j.getNom() + " " + j.getPrenom());
+			
+		}
+	}
+	
+	/**
+	 * Afficher la liste des utilisateurs
+	 */
+	public static void showUsersBan() {
+		for (Utilisateur j : daoUtilisateur.findAllBan()) {
+			System.out.println(j.getId() + ". " + j.getNom() + " " + j.getPrenom());
+			
+		}
+	}
+	
 	public static void menu() {
-		int menu = 0;	
+		int menu = 0;
 		do {
 			System.out.println("");
 			System.out.println("-------------- MENU --------------");
@@ -160,9 +268,9 @@ public class Test {
 				break;
 
 			case 2:
-				addPartie();
+				//addPartie();
 				break;
-				
+
 			case 20:
 				showParties();
 				break;
@@ -175,7 +283,7 @@ public class Test {
 			}
 		} while (menu != 0);
 	}
-	
+
 	/**
 	 * Affiche la liste des cartes
 	 */
@@ -201,7 +309,7 @@ public class Test {
 	 * Modifier une carte
 	 */
 	public static void editCarte() {
-		
+
 		showCartes();
 
 		System.out.print("Choisir la carte a modifier : ");
@@ -222,15 +330,6 @@ public class Test {
 		System.out.print("Choisir la carte a supprimer : ");
 		daoCarte.deleteById(sc.nextInt());
 	}
-	
-	/**
-	 * Crï¿½er une partie
-	 */
-	public static void addPartie() {
-		for (Partie p : daoPartie.findAll()) {
-			System.out.println(p.getId());
-		}
-	}
 
 	/**
 	 * Affiche la liste des parties
@@ -240,31 +339,32 @@ public class Test {
 			System.out.println(p.getId());
 		}
 	}
-	
+
+	/**
+	 * Créer une partie
+	 */
 	public static Partie addPartie(Joueur j) {
-		
+
 		Partie p = new Partie();
-		DAOPartieJPA daoPartieJPA = new DAOPartieJPA();
 		p.setCapitaine(j);
 		p.setGrille(saveGrille());
 		daoPartieJPA.save(p);
 		return p;
 	}
-	
-	
-	
+
 	public static List<Case> JoueurDonneurDeMot(Partie p) {
-		
-			 EntityManagerFactory emf = Persistence.createEntityManagerFactory("codeNamesPU");
-			 EntityManager em = emf.createEntityManager();
-			 List<Case> result = em.createQuery("select c From Case c left join c.carte car where c.grille="+p.getGrille().getId(), Case.class)
+
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("codeNamesPU");
+		EntityManager em = emf.createEntityManager();
+		List<Case> result = em
+				.createQuery("select c From Case c left join c.carte car where c.grille=" + p.getGrille().getId(),
+						Case.class)
 				.getResultList();
-		
-			 return result;
-		
-		
+
+		return result;
+
 	}
-	
+
 	/** Ajouter une liste de cartes */
 	public static void saveListeDeCarte(List<String> listeDeMots) {
 		DAOCarteJPA newDAOcarte = new DAOCarteJPA();
@@ -274,15 +374,16 @@ public class Test {
 			newDAOcarte.save(myCarte);
 		}
 	}
-	
-	/** 
-	 * Ajouter une grille 
-	 * @return 
+
+	/**
+	 * Ajouter une grille
+	 * 
+	 * @return
 	 */
 	public static Grille saveGrille() {
-		System.out.print("indiquer le niveau de difficultï¿½ entre 1 et 3 : ");
+		System.out.print("indiquer le niveau de difficulte entre 1 et 3 : ");
 		int i = sc.nextInt();
-		Difficulte d =Difficulte.values()[i - 1];
+		Difficulte d = Difficulte.values()[i - 1];
 		Grille newGrille = new Grille();
 		List<Carte> lesCartes = daoCarte.findAll();
 		Collections.shuffle(lesCartes);
