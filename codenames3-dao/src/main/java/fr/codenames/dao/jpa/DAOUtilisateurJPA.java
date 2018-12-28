@@ -11,6 +11,7 @@ import fr.codenames.exception.AccountLockedException;
 import fr.codenames.exception.UsernameOrPasswordNotFoundException;
 import fr.codenames.model.Administrateur;
 import fr.codenames.model.Joueur;
+import fr.codenames.model.Password;
 import fr.codenames.model.Utilisateur;
 
 public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
@@ -94,18 +95,37 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 			throws UsernameOrPasswordNotFoundException, AccountLockedException {
 		try {
 			TypedQuery<Joueur> myQueryJ = em.createQuery(
-					"select j from Joueur j where j.username = :userName and j.password = :pwd", Joueur.class);
+					"select j from Joueur j where j.username = :userName", Joueur.class);
 			myQueryJ.setParameter("userName", username);
-			myQueryJ.setParameter("pwd", password);
+			
 
 			Joueur monJoueur = myQueryJ.getSingleResult();
+			boolean passwordcheck = false;
+			try {
+				passwordcheck = Password.check(password,monJoueur.getPassword());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			if (monJoueur.isBanni()) {
 				System.out.println("banni!");
 				throw new AccountLockedException();
+				
 			}
+			else if
+			(passwordcheck ==true) {
 			System.out.println("bienvenu joueur");
 			return monJoueur;
-
+			}
+			else if
+			(passwordcheck==false) {
+				System.out.println("Mauvais mot de passe");
+			}
+			
+			
+			
+			
 		} catch (NoResultException e) {
 			try {
 				TypedQuery<Administrateur> myQueryA = em.createQuery(
@@ -122,5 +142,7 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 			}
 
 		}
+		return null;
 	}
+	
 }

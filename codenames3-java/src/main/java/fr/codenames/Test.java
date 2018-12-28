@@ -26,8 +26,8 @@ public class Test {
 	public static void main(String[] args) {
 
 		sc = new Scanner(System.in);
-
-		connexion();
+		getPassword();
+//		connexion();
 
 //		List<String> listeDeMots = Arrays.asList("brass", "painstaking", "precious", "regular", "mysterious",
 //				"lunchroom", "enjoy", "whirl", "store", "calculate", "sparkle", "cart", "previous", "whip", "upbeat",
@@ -59,6 +59,8 @@ public class Test {
 	 * Se connecter avec un nom d'utilisateur et un mot de passe (a saisir)
 	 */
 	public static void connexion() {
+		int connexion = 0;
+		do {
 		System.out.print("Indiquer le nom d'utilisateur (touche entrer pour s'inscrire) : ");
 		String username = sc.nextLine();
 
@@ -87,6 +89,7 @@ public class Test {
 		catch (AccountLockedException e) {
 			System.out.println("COMPTE BLOQUE ... SORRY !");
 		}
+		} while (connexion != 0);
 	}
 
 	public static void inscription() {
@@ -105,7 +108,12 @@ public class Test {
 		myJoueur.setUsername(sc.nextLine());
 
 		System.out.print("Indiquer le mot de passe : ");
-		myJoueur.setPassword(sc.nextLine());
+		try {
+			myJoueur.setPassword(Password.getSaltedHash(sc.nextLine()));
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		try {
 			daoUtilisateur.save(myJoueur);
@@ -381,7 +389,17 @@ public class Test {
 		}
 	}
 
-
+public static void getPassword() {
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("codeNamesPU");
+	EntityManager em = emf.createEntityManager();
+	List<Joueur> result = em
+			.createQuery("select j From Joueur j where j.username= 'fraiserouge'", Joueur.class)
+			.getResultList();
+	for (int i = 0; i < 1; i++) {
+		System.out.println(result.get(i).getPassword());
+		//System.out.println(result.get(i).getCouleur());
+	}
+}
 	public static Grille saveGrille() {
 		System.out.print("indiquer le niveau de difficulte entre 1 et 3 : ");
 		int i = sc.nextInt();
