@@ -26,7 +26,7 @@ public class DAOCarteJPA extends DAOJPA implements IDAOCarte {
 	@Override
 	public Carte save(Carte entity) {
 		// TODO Auto-generated method stub
-		//On démarre la transaction
+		//On demarre la transaction
 				em.getTransaction().begin();
 				
 				if (entity.getId() == 0) {

@@ -1,6 +1,5 @@
 package fr.codenames;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -27,8 +26,6 @@ public class Test {
 	public static void main(String[] args) {
 
 		sc = new Scanner(System.in);
-
-//		connexion();
 
 		connexion();
 
@@ -361,10 +358,10 @@ public class Test {
 				.createQuery("select c From Case c where c.grille=" + p.getPartie().getGrille().getId(), Case.class)
 				.getResultList();
 		for (int i = 0; i < 25; i++) {
-			System.out.println(result.get(i).getCarte().getLibelle());
-			System.out.println(result.get(i).getCouleur());
+			System.out.println(i + ". " + result.get(i).getCarte().getLibelle() + " - " + result.get(i).getCouleur());
+			//System.out.println(result.get(i).getCouleur());
 		}
-		System.out.println("Donnez votre mot");
+		System.out.print("Donnez votre mot (indice) : ");
 		String mot = sc.nextLine();
 		System.out.println("Et le nombre de mots");
 		int nbDeMots = Integer.parseInt(sc.nextLine());
