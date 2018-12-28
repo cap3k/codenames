@@ -4,16 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -55,7 +46,7 @@ public class Grille {
 	public void generer25Cases(List<Carte> cartesRandom, Difficulte d) {
 		 		 
 		    List<Case> les25cases = new ArrayList<Case> ();
-			int m = 9; // nombre de cas à deviner pour l'équipe qui commence
+			int m = 9; // nombre de cas a deviner pour l'equipe qui commence
 			Random random = new Random();
 			int nbNoire = d.ordinal();
 			if (nbNoire == 2) {

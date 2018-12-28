@@ -85,7 +85,7 @@ public class DAOPartieSQL extends DAOSQL implements IDAOPartie {
 						+ " VALUES (?, ?)";
 			}
 			
-			else { //Mise à jour du pouvoir
+			else { //Mise a jour du pouvoir
 				myQuery = "UPDATE partie SET PAR_GRILLE_ID = ?,"
 						+ " PAR_CAPITAINE_ID = ?"
 						+ " WHERE PAR_ID = ?";

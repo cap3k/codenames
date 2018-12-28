@@ -78,7 +78,7 @@ public class DAOCarteSQL extends DAOSQL implements IDAOCarte {
 						+ " VALUES (?)";
 			}
 			
-			else { //Mise à jour de la carte
+			else { //Mise a jour de la carte
 				myQuery = "UPDATE carte SET CAR_LIBELLE = ?"
 						+ " WHERE CAR_ID = ?";
 			}

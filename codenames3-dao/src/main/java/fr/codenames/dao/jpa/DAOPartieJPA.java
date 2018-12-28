@@ -25,7 +25,7 @@ public class DAOPartieJPA extends DAOJPA implements IDAOPartie {
 	@Override
 	public Partie save(Partie entity) {
 		// TODO Auto-generated method stub
-		//On démarre la transaction
+		//On demarre la transaction
 				em.getTransaction().begin();
 				
 				if (entity.getId() == 0) {

@@ -1,6 +1,5 @@
 package fr.codenames.dao.jpa;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -38,7 +37,7 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 
 	@Override
 	public Utilisateur save(Utilisateur entity) {
-		// On démarre la transaction
+		// On demarre la transaction
 		em.getTransaction().begin();
 
 		if (entity.getId() == 0) {

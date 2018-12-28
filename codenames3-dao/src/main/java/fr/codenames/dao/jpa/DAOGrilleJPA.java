@@ -2,11 +2,9 @@ package fr.codenames.dao.jpa;
 
 import java.util.List;
 
-import fr.codenames.dao.IDAOCarte;
 import fr.codenames.dao.IDAOGrille;
-import fr.codenames.model.Carte;
 import fr.codenames.model.Grille;
-import fr.codenames.model.Partie;
+
 
 public class  DAOGrilleJPA extends DAOJPA implements IDAOGrille {
 
@@ -27,7 +25,7 @@ public class  DAOGrilleJPA extends DAOJPA implements IDAOGrille {
 	@Override
 	public Grille save(Grille entity) {
 		// TODO Auto-generated method stub
-		//On démarre la transaction
+		//On demarre la transaction
 		em.getTransaction().begin();
 		
 		if (entity.getId() == 0) {

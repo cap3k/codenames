@@ -9,7 +9,7 @@ import fr.codenames.exception.AccountLockedException;
 
 public interface IDAOUtilisateur extends IDAO<Utilisateur> {
 	/**
-	 * Méthode d'authentification pour un utilisateur (Joueur ou Administrateur)
+	 * Methode d'authentification pour un utilisateur (Joueur ou Administrateur)
 	 * @param username
 	 * @param password
 	 * @return

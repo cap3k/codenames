@@ -8,25 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import fr.codenames.dao.IDAOCarte;
-import fr.codenames.dao.IDAOGrille;
-import fr.codenames.dao.IDAOPartie;
-import fr.codenames.dao.IDAOUtilisateur;
-import fr.codenames.dao.jpa.DAOCarteJPA;
-import fr.codenames.dao.jpa.DAOGrilleJPA;
-import fr.codenames.dao.jpa.DAOPartieJPA;
-import fr.codenames.dao.jpa.DAOUtilisateurJPA;
-import fr.codenames.model.Carte;
-import fr.codenames.model.Case;
-import fr.codenames.model.Difficulte;
-import fr.codenames.model.Grille;
-import fr.codenames.model.Joueur;
-import fr.codenames.model.Partie;
-import fr.codenames.model.TypeUtilisateur;
-import fr.codenames.model.Utilisateur;
-import fr.codenames.exception.AccountLockedException;
-import fr.codenames.exception.NonUniqueUsernameException;
-import fr.codenames.exception.UsernameOrPasswordNotFoundException;
+import fr.codenames.dao.*;
+import fr.codenames.dao.jpa.*;
+import fr.codenames.model.*;
+import fr.codenames.exception.*;
 
 public class Test {
 
