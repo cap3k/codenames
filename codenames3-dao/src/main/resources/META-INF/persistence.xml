@@ -8,7 +8,6 @@
 
 		<class>fr.codenames.model.Administrateur</class>
 		<class>fr.codenames.model.Carte</class>
-		<class>fr.codenames.model.Client</class>
 		<class>fr.codenames.model.Case</class>
 		<class>fr.codenames.model.Grille</class>
 		<class>fr.codenames.model.Joueur</class>
