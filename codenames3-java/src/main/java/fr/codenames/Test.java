@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.codenames.dao.*;
-import fr.codenames.dao.jpa.*;
+import fr.codenames.dao.dao.jpa.*;
 import fr.codenames.model.*;
 import fr.formation.dao.IDAOAchat;
 import fr.formation.dao.IDAOClient;
