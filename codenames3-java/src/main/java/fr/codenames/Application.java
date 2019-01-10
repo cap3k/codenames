@@ -7,12 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import fr.codenames.dao.IDAOAdministrateur;
 import fr.codenames.dao.IDAOCarte;
 import fr.codenames.dao.IDAOJoueur;
-import fr.codenames.dao.IDAOUtilisateur;
 import fr.codenames.exception.AccountLockedException;
 import fr.codenames.exception.UsernameOrPasswordNotFoundException;
-import fr.codenames.model.Joueur;
-import fr.codenames.model.TypeUtilisateur;
-import fr.codenames.model.Utilisateur;
 
 public class Application {
 
@@ -21,10 +17,8 @@ public class Application {
 	@Autowired
 	private IDAOJoueur myJoueur;
 	@Autowired
-	private IDAOJoueur myJoueur;
-	@Autowired
 	private IDAOAdministrateur myAdministrateur;
-	
+
 	private Scanner sc;
 
 	public void run(String[] args) {
@@ -43,13 +37,10 @@ public class Application {
 		}
 	}
 
-	public void connexion() throws AccountLockedException, UsernameOrPasswordNotFoundException   {
+	public void connexion() throws AccountLockedException, UsernameOrPasswordNotFoundException {
 		sc = new Scanner(System.in);
 
 		System.out.println("----- CONNEXION -----");
-		System.out.println("choix du type de connexion : \n 1 - administrateur \n 2 - joueur");
-		int i = sc.nextInt();
-
 		System.out.print("Indiquer le nom d'utilisateur : ");
 		sc.nextLine();
 		String username = sc.nextLine();
@@ -57,26 +48,16 @@ public class Application {
 		System.out.print("Indiquer le mot de passe : ");
 		String password = sc.nextLine();
 
-			System.out.println("lancement authentification");
-			if(myJoueur.auth(username, password)!=null || myAdministrateur.auth(username, password)!=null) {
-			
-			if(myJoueur.authBanni(username)==null) {
-				System.out.println("connect�!");
-			}
-			else
-			{
+		System.out.println("lancement authentification");
+		if (myJoueur.auth(username, password) != null || myAdministrateur.auth(username, password) != null) {
+
+			if (myJoueur.authBanni(username) == null) {
+				System.out.println("connecte!");
+			} else {
 				throw new AccountLockedException();
-				}
-			}else {
-				throw new UsernameOrPasswordNotFoundException();
 			}
-		
-		
-
-}}
-
-		catch (AccountLockedException e) {
-			System.out.println("COMPTE BLOQUE ... SORRY !");
+		} else {
+			throw new UsernameOrPasswordNotFoundException();
 		}
 	}
 }
