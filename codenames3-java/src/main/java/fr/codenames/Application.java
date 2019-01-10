@@ -29,11 +29,9 @@ public class Application {
 		try {
 			connexion();
 		} catch (AccountLockedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("compte bloqué");
 		} catch (UsernameOrPasswordNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("username ou mdp incorrect");
 		}
 	}
 
@@ -42,7 +40,6 @@ public class Application {
 
 		System.out.println("----- CONNEXION -----");
 		System.out.print("Indiquer le nom d'utilisateur : ");
-		sc.nextLine();
 		String username = sc.nextLine();
 
 		System.out.print("Indiquer le mot de passe : ");
