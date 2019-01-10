@@ -19,7 +19,7 @@ public class Application {
 	@Autowired
 	private IDAOCarte myCarte;
 	@Autowired
-	private IDAOJoueur myUtilisateur;
+	private IDAOJoueur myJoueur;
 	@Autowired
 	private IDAOJoueur myJoueur;
 	@Autowired
@@ -30,7 +30,7 @@ public class Application {
 	public void run(String[] args) {
 
 		System.out.println(myCarte.findById(1).get().getLibelle());
-		System.out.println(myUtilisateur.findById(2).get().getNom());
+		System.out.println(myJoueur.findById(2).get().getNom());
 
 		try {
 			connexion();
@@ -46,7 +46,12 @@ public class Application {
 	public void connexion() throws AccountLockedException, UsernameOrPasswordNotFoundException   {
 		sc = new Scanner(System.in);
 
+		System.out.println("----- CONNEXION -----");
+		System.out.println("choix du type de connexion : \n 1 - administrateur \n 2 - joueur");
+		int i = sc.nextInt();
+
 		System.out.print("Indiquer le nom d'utilisateur : ");
+		sc.nextLine();
 		String username = sc.nextLine();
 
 		System.out.print("Indiquer le mot de passe : ");
@@ -56,7 +61,7 @@ public class Application {
 			if(myJoueur.auth(username, password)!=null || myAdministrateur.auth(username, password)!=null) {
 			
 			if(myJoueur.authBanni(username)==null) {
-				System.out.println("connecté!");
+				System.out.println("connectï¿½!");
 			}
 			else
 			{
@@ -69,3 +74,9 @@ public class Application {
 		
 
 }}
+
+		catch (AccountLockedException e) {
+			System.out.println("COMPTE BLOQUE ... SORRY !");
+		}
+	}
+}

@@ -43,7 +43,7 @@ public class Test {
 
 		sc = new Scanner(System.in);
 		getPassword();
-//		connexion();
+		connexion();
 
 //		List<String> listeDeMots = Arrays.asList("brass", "painstaking", "precious", "regular", "mysterious",
 //				"lunchroom", "enjoy", "whirl", "store", "calculate", "sparkle", "cart", "previous", "whip", "upbeat",

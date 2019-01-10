@@ -122,10 +122,7 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 			(passwordcheck==false) {
 				System.out.println("Mauvais mot de passe");
 			}
-			
-			
-			
-			
+
 		} catch (NoResultException e) {
 			try {
 				TypedQuery<Administrateur> myQueryA = em.createQuery(
