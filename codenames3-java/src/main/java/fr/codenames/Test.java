@@ -369,10 +369,10 @@ public class Test {
 			System.out.println(i + ". " + result.get(i).getCarte().getLibelle() + " - " + result.get(i).getCouleur());
 			//System.out.println(result.get(i).getCouleur());
 		}
-		System.out.println("Donnez votre mot");
+		System.out.print("Donnez votre mot (indice) : ");
 		sc.nextLine();
 		String mot = sc.nextLine();
-		System.out.println("Et le nombre de mots");
+		System.out.print("Et le nombre de mots : ");
 		int nbDeMots = Integer.parseInt(sc.nextLine());
 
 		return result;
