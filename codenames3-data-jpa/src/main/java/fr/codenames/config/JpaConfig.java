@@ -27,15 +27,15 @@ public class JpaConfig {
 	@Autowired
 	private Environment env;
 	
-	@Value("${sql.url}")
-	private String sqlUrl;
+//	@Value("${sql.url}")
+//	private String sqlUrl;
 	
 	@Bean
 	public BasicDataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		
-		dataSource.setDriverClassName("sql.driver");
-		dataSource.setUrl("sql.url");
+		dataSource.setDriverClassName(env.getProperty("sql.driver"));
+		dataSource.setUrl(env.getProperty("sql.url"));
 		dataSource.setUsername(env.getProperty("sql.user"));
 		dataSource.setPassword(env.getProperty("sql.password"));
 		dataSource.setMaxTotal(env.getProperty("sql.maxTotal", Integer.class));
