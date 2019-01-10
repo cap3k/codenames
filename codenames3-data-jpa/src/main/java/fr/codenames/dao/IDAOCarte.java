@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.codenames.model.Carte;
 
-public interface IDAOCarte extends JpaRepository {
+public interface IDAOCarte extends JpaRepository<Carte, Integer> {
 }

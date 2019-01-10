@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.codenames.model.Partie;
 
-public interface IDAOPartie extends JpaRepository {
+public interface IDAOPartie extends JpaRepository<Partie, Integer> {
 }

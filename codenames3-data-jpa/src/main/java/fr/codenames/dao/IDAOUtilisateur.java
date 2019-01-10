@@ -3,13 +3,14 @@ package fr.codenames.dao;
 import fr.codenames.exception.UsernameOrPasswordNotFoundException;
 import fr.codenames.model.Utilisateur;
 
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.codenames.exception.AccountLockedException;
 
-public interface IDAOUtilisateur extends JpaRepository {
+public interface IDAOUtilisateur extends JpaRepository<Utilisateur, Integer> {
 	/**
 	 * Methode d'authentification pour un utilisateur (Joueur ou Administrateur)
 	 * @param username
