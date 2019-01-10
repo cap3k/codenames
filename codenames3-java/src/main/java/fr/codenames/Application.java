@@ -8,7 +8,10 @@ import fr.codenames.dao.IDAOAdministrateur;
 import fr.codenames.dao.IDAOCarte;
 import fr.codenames.dao.IDAOJoueur;
 import fr.codenames.exception.AccountLockedException;
+import fr.codenames.exception.NonUniqueUsernameException;
 import fr.codenames.exception.UsernameOrPasswordNotFoundException;
+import fr.codenames.model.Joueur;
+import fr.codenames.model.Password;
 
 public class Application {
 
@@ -19,12 +22,12 @@ public class Application {
 	@Autowired
 	private IDAOAdministrateur myAdministrateur;
 
-	private Scanner sc;
+	private static Scanner sc;
 
 	public void run(String[] args) {
 
-		System.out.println(myCarte.findById(1).get().getLibelle());
-		System.out.println(myJoueur.findById(2).get().getNom());
+//		System.out.println(myCarte.findById(1).get().getLibelle());
+//		System.out.println(myJoueur.findById(2).get().getNom());
 
 		try {
 			connexion();
@@ -56,5 +59,29 @@ public class Application {
 		} else {
 			throw new UsernameOrPasswordNotFoundException();
 		}
+	}
+	 
+	public void inscription() {
+		
+		Joueur myNewJoueur = new Joueur();
+		
+		System.out.println("---------- INSCRIPTION -----------");
+		System.out.print("Indiquer votre nom : ");		
+		myNewJoueur.setNom(sc.nextLine());
+
+		System.out.print("Indiquer votre prenom : ");
+		myNewJoueur.setPrenom(sc.nextLine());
+
+		System.out.print("Indiquer votre pseudo : ");
+		myNewJoueur.setPseudo(sc.nextLine());
+
+		System.out.print("Indiquer le nom d'utilisateur : ");
+		myNewJoueur.setUsername(sc.nextLine());
+				
+		System.out.print("Indiquer le mot de passe : ");
+		myNewJoueur.setPassword(sc.nextLine());
+
+		myJoueur.save(myNewJoueur);
+
 	}
 }
