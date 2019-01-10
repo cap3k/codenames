@@ -8,19 +8,35 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import fr.codenames.dao.*;
 import fr.codenames.dao.jpa.*;
 import fr.codenames.model.*;
+import fr.formation.dao.IDAOAchat;
+import fr.formation.dao.IDAOClient;
+import fr.formation.dao.IDAOCommande;
+import fr.formation.dao.IDAOEvenement;
+import fr.formation.dao.IDAOFournisseur;
+import fr.formation.dao.IDAOProduit;
 import fr.codenames.exception.*;
 
 public class Test {
-
-	private static IDAOUtilisateur daoUtilisateur = new DAOUtilisateurJPA();
-	private static IDAOCarte daoCarte = new DAOCarteJPA();
-	private static IDAOPartie daoPartie = new DAOPartieJPA();
-	private static IDAOGrille newDAOgrille = new DAOGrilleJPA();
-	private static IDAOPartie daoPartieJPA = new DAOPartieJPA();
-	private static Utilisateur utilisateur;
+	
+	
+	@Autowired
+	private IDAOUtilisateur myUtilisateur;
+	
+	@Autowired
+	private IDAOCarte myCarte;
+	
+	@Autowired
+	private IDAOPartie myPartie;
+	
+	@Autowired
+	private IDAOGrille myGrille;
+	
+	
 	private static Scanner sc;
 
 	public static void main(String[] args) {
@@ -48,11 +64,6 @@ public class Test {
 //		sc.close();
 //		JoueurDonneurDeMot(addPartie(j));
 
-		daoUtilisateur.close();
-		daoCarte.close();
-		daoPartie.close();
-		newDAOgrille.close();
-		daoPartieJPA.close();
 	}
 
 	/**
@@ -72,7 +83,7 @@ public class Test {
 		String password = sc.nextLine();
 
 		try {
-			utilisateur = daoUtilisateur.auth(username, password);
+			utilisateur = IDAOUtilisateur.auth(username, password);
 			System.out.println("connecte!");
 			if (utilisateur.getType() == TypeUtilisateur.values()[1]) {
 				menu(utilisateur);

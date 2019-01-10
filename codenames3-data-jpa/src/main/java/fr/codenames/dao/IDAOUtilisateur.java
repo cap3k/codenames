@@ -23,8 +23,10 @@ public interface IDAOUtilisateur<T extends Utilisateur> extends JpaRepository<T,
 	
 	
 	@Query ("select j from #{#entityName} j where j.username = :userName and j.password = :pwd")
-	public T auth(@Param("userName") String username, @Param("pwd")String password) throws UsernameOrPasswordNotFoundException, AccountLockedException;
+	public T auth(@Param("userName") String username, @Param("pwd")String password);
 
+	@Query ("select j from Joueur j where j.username = :userName and j.banni = true")
+	public T authBanni(@Param("userName") String username);
 //	public void banById(int nextInt);
 //
 //	List<T> findAllBan();

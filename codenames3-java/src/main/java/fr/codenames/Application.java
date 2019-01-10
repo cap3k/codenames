@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import fr.codenames.dao.IDAOAdministrateur;
 import fr.codenames.dao.IDAOCarte;
 import fr.codenames.dao.IDAOJoueur;
 import fr.codenames.dao.IDAOUtilisateur;
@@ -21,6 +22,9 @@ public class Application {
 	private IDAOJoueur myUtilisateur;
 	@Autowired
 	private IDAOJoueur myJoueur;
+	@Autowired
+	private IDAOAdministrateur myAdministrateur;
+	
 	private Scanner sc;
 
 	public void run(String[] args) {
@@ -28,10 +32,18 @@ public class Application {
 		System.out.println(myCarte.findById(1).get().getLibelle());
 		System.out.println(myUtilisateur.findById(2).get().getNom());
 
-		connexion();
+		try {
+			connexion();
+		} catch (AccountLockedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UsernameOrPasswordNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public void connexion() {
+	public void connexion() throws AccountLockedException, UsernameOrPasswordNotFoundException   {
 		sc = new Scanner(System.in);
 
 		System.out.print("Indiquer le nom d'utilisateur : ");
@@ -40,18 +52,20 @@ public class Application {
 		System.out.print("Indiquer le mot de passe : ");
 		String password = sc.nextLine();
 
-		try {
 			System.out.println("lancement authentification");
-			myJoueur.auth(username, password);
-			System.out.println("connecte!");
-		}
+			if(myJoueur.auth(username, password)!=null || myAdministrateur.auth(username, password)!=null) {
+			
+			if(myJoueur.authBanni(username)==null) {
+				System.out.println("connecté!");
+			}
+			else
+			{
+				throw new AccountLockedException();
+				}
+			}else {
+				throw new UsernameOrPasswordNotFoundException();
+			}
+		
+		
 
-		catch (UsernameOrPasswordNotFoundException e) {
-			System.out.println("MAUVAIS USERNAME OU PASSWORD !!");
-		}
-
-		catch (AccountLockedException e) {
-			System.out.println("COMPTE BLOQUE ... SORRY !");
-		}
-	}
-}
+}}
