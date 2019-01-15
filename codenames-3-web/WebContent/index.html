@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -8,258 +8,51 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="le-fichier-css.css" />
 
-<title>eshop</title>
+<title>Codenames Bienvenu</title>
 </head>
-
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="#acceuil" id="logo">e-SHOP</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarNav" aria-controls="navbarNav"
-			aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="#acceuil">Accueil<span
-						class="sr-only">(current)</span></a></li>
-				<li class="nav-item"><a class="nav-link" href="#produit">Ajouter
-						Produit</a></li>
-				<li class="nav-item"><a class="nav-link" href="#contact">Contact</a>
-				</li>
 
-			</ul>
-		</div>
-
-	</nav>
-<section class="container">
-	<section id="acceuil">
-		<header>
-			<div>
-				<h1>Bienvenue sur e-shop, le site e-commerce pas comme les
-					autres !</h1>
-			</div>
-			<p>Dépensez ici votre argent en toute impunité.</p>
-		</header>
-
-
-
-
-		<div id="carouselExampleIndicators" class="carousel slide"
-			data-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-target="#carouselExampleIndicators" data-slide-to="0"
-					class="active"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-			</ol>
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img class="d-block w-100"
-						src="https://www.w3schools.com/w3images/lights.jpg"
-						alt="First slide">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100"
-						src="https://www.w3schools.com/w3images/nature.jpg"
-						alt="Second slide">
-				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100"
-						src="https://www.w3schools.com/w3images/fjords.jpg"
-						alt="Third slide">
-				</div>
-			</div>
-			<a class="carousel-control-prev" href="#carouselExampleIndicators"
-				role="button" data-slide="prev"> <span
-				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
-				role="button" data-slide="next"> <span
-				class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="sr-only">Next</span>
-			</a>
-		</div>
-
-		<h2>Des promotions !</h2>
-		<h3>Seulement le dimanche entre 23h50 et 23h52</h3>
-		<p>
-
-			Recherchez le plus <span id="rapidement"> rapidement </span> tous nos
-			produits
-
-		</p>
-
-	</section>
-
-
-
-	<section id="contact">
-		<header>
-			<h1>Vous souhaitez nous contacter? Laissez-nous un message!</h1>
-		</header>
+	<div class="container">
 
 		<form>
-			<div class="form-group row">
-				<label for="inputEmail3" class="col-sm-2 col-form-label">Laissez
-					votre Email</label>
-				<div class="col-sm-10">
-					<input type="email" class="form-control" id="inputEmail3"
-						placeholder="Email">
-				</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">Email address</label> <input
+					type="email" class="form-control" id="exampleInputEmail1"
+					aria-describedby="emailHelp" placeholder="Enter email"> <small
+					id="emailHelp" class="form-text text-muted">We'll never
+					share your email with anyone else.</small>
 			</div>
-			<fieldset class="form-group">
-				<div class="row">
-					<legend class="col-form-label col-sm-2 pt-0">Votre fruit
-						préféré?</legend>
-					<div class="col-sm-10">
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="gridRadios"
-								id="gridRadios1" value="option1" checked> <label
-								class="form-check-label" for="gridRadios1"> la fraise </label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="gridRadios"
-								id="gridRadios2" value="option2"> <label
-								class="form-check-label" for="gridRadios2"> la banane </label>
-						</div>
-						<div class="form-check disabled">
-							<input class="form-check-input" type="radio" name="gridRadios"
-								id="gridRadios3" value="option3" disabled> <label
-								class="form-check-label" for="gridRadios3"> le kiwi
-								disabled radio </label>
-						</div>
-					</div>
-				</div>
-			</fieldset>
-			<div class="form-group row">
-				<div class="col-sm-2">Checkbox</div>
-				<div class="col-sm-10">
-					<div>
-						Laissez nous votre message <br>
-						<textarea rows="4" cols="50" required>
-At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies. 
-</textarea>
-					</div>
-
-				</div>
-				<div class="form-group row">
-					<div class="col-sm-10">
-						<button type="submit" class="btn btn-primary">Sign in</button>
-					</div>
-				</div>
-		</form>
-	</section>
-	<section id="produit">
-		<header>
-			<h1>Veuillez renseigner les informations ci-dessous pour créer
-				votre produit</h1>
-		</header>
-
-
-		<form method="GET">
-			<!-- Chaque zone est composé de 2 colonnes : type d'info + saisie -->
-			<!-- > label sur 2 colonnes, input et select sur 10 colonnes < -->
-
-			<!-- Nom du produit -->
-			<div class="form-group row">
-				<label for="nom" class="col-sm-2 col-form-label">Le nom du
-					produit&nbsp;:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="nom" name="nom"
-						placeholder="Le nom du produit">
-				</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Password</label> <input
+					type="password" class="form-control" id="exampleInputPassword1"
+					placeholder="Password">
 			</div>
-
-			<!-- Prix du produit -->
-			<div class="form-group row">
-				<label for="prix" class="col-sm-2 col-form-label">Le prix du
-					produit&nbsp;:</label>
-				<div class="col-sm-10">
-					<input type="number" step="0.2" class="form-control" id="prix"
-						name="prix" placeholder="Le prix du produit">
-				</div>
+			<div class="form-group form-check">
+				<input type="checkbox" class="form-check-input" id="exampleCheck1">
+				<label class="form-check-label" for="exampleCheck1">Check me
+					out</label>
 			</div>
-
-			<!-- Fournisseur du produit -->
-			<div class="form-group row">
-				<label for="fournisseur" class="col-sm-2 col-form-label">Fournisseur&nbsp;:</label>
-				<div class="col-sm-10">
-					<select class="form-control" id="fournisseur" name="fournisseur">
-						<option value="1">GoPRO</option>
-						<option value="2" selected="">Amazon</option>
-					</select>
-				</div>
-			</div>
-
-			<!-- Bouton "valider" -->
-			<div class="form-group row">
-				<div class="col-sm-2"></div>
-				<div class="col-sm-10">
-					<input class="btn btn-success" type="submit" value="Ajouter"
-						onclick="laFonctionJS(); return false;" />
-				</div>
-
-			</div>
+			<button type="submit" class="btn btn-primary" onclick="connexion(); return false;">Submit</button>
 		</form>
 
+		<footer class="container fixed-bottom"> Copyright
+			codenames.fr © 2019 </footer>
 
-		<h1>Liste des produits</h1>
+		<script
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-		<!-- Tableau des produits - striped pour avoir 1 ligne sur 2 coloré -->
-		<table class="table table-striped" id="table">
-			<!-- En-tête du tableau (le titre des colonnes) -->
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Nom</th>
-					<th>Prix</th>
-					<th>Fournisseur</th>
-				</tr>
-			</thead>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+			integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+			crossorigin="anonymous"></script>
 
-			<!-- Contenu du tableau -->
-			<tbody>
-				<!-- Ligne d'un produit -->
-				<tr>
-					<th>1</th>
-					<td>GoPRO HERO 7</td>
-					<td>499.99</td>
-					<td>GoPRO</td>
-				</tr>
+		<script src="assets/js/index.js"></script>
+	</div>
 
-				<!-- Ligne d'un produit -->
-				<tr>
-					<th>2</th>
-					<td>DJI MAVIC PRO 2</td>
-					<td>1499.99</td>
-					<td>DJI</td>
-				</tr>
-			</tbody>
-		</table>
-	</section>
-</section>
-	<footer class="container fixed-bottom"> Copyright e-shop.fr ©
-		2019 </footer>
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-		crossorigin="anonymous"></script>
-
-
-
-
-
-	<script src="assets/js/le-script.js"></script>
 </body>
 </html>
