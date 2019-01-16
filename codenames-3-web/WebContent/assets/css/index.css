@@ -1,0 +1,19 @@
+/* .vertical-align {
+    display: flex;
+    align-items: center;
+} */
+
+/* container{
+    margin: 0 auto;
+    width:80% value of your choice which suits your alignment
+} */
+
+container{
+ position relative;
+}
+form{
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%,-50%);
+}
