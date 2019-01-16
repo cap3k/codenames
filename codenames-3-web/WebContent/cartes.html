@@ -41,16 +41,16 @@
 				
 				<!-- Nom de la carte -->
 				<div class="form-group row">
-					<label for="nom" class="col-sm-2 col-form-label">Le nom de la carte&nbsp;:</label>
-					<div class="col-sm-10">
+					<label for="nom" class="col-sm-3 col-form-label">Le nom de la carte&nbsp;:</label>
+					<div class="col-sm-9">
 						<input type="text" class="form-control" id="nom" name="nom" placeholder="Le nom de la carte" required/>
 					</div>
 				</div>	
 				
 				<!-- Bouton "valider" -->
 				<div class="form-group row">
-					<div class="col-sm-2"></div>
-					<div class="col-sm-10">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-9">
 						<input class="btn btn-sucess" type="submit" value="Ajouter" onclick="ajouterCarte(); return false;" />
 					</div>
 				</div>
@@ -67,8 +67,8 @@
 				
 				<!-- identifiant de la carte -->
 				<div class="form-group row">
-					<label for="nom" class="col-sm-2 col-form-label">Sélectionner une carte existante&nbsp;:</label>
-					<div class="col-sm-10">
+					<label for="nom" class="col-sm-3 col-form-label">Sélectionner une carte existante&nbsp;:</label>
+					<div class="col-sm-9">
 						<select class="form-control" id="nomCarte" name="nomCarte" required>
 							<option>
 							
@@ -76,12 +76,47 @@
 						</select>
 					</div>
 				</div>
-				
 				<!-- Nouveau nom de la carte -->
 				<div class="form-group row">
-					<label for="nom" class="col-sm-2 col-form-label">Le nouveau nom de la carte&nbsp;:</label>
-					<div class="col-sm-10">
+					<label for="nom" class="col-sm-3 col-form-label">Le nouveau nom de la carte&nbsp;:</label>
+					<div class="col-sm-9">
 						<input type="text" class="form-control" id="newNom" name="newNom" placeholder="Nouveau nom de la carte" required/>
+					</div>
+				</div>
+				<!-- Bouton "valider" -->
+				<div class="form-group row">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-9">
+						<input class="btn btn-sucess" type="submit" value="Mettre à jour" onclick="modifierCarte(); return false;" />
+					</div>
+				</div>
+			</form>
+		</section>
+		
+		<section class="container" id="supprimerCarte">
+			<h2>Supprimer une carte</h2>
+			<!-- Formulaire de modif d'une carte -->
+			<form method="GET">
+				<!-- Chaque zone est composé de 2 colonnes : 
+				type d'info + saisie label sur 2 colonnes
+				input et select sur 10 colonnes-->
+				
+				<!-- identifiant de la carte -->
+				<div class="form-group row">
+					<label for="nom" class="col-sm-3 col-form-label">Sélectionner une carte existante&nbsp;:</label>
+					<div class="col-sm-9">
+						<select class="form-control" id="nomCarteSupp" name="nomCarteSupp" required>
+							<option>
+							
+							</option>
+						</select>
+					</div>
+				</div>
+				<!-- Bouton "supprimer" -->
+				<div class="form-group row">
+					<div class="col-sm-3"></div>
+					<div class="col-sm-9">
+						<input class="btn btn-sucess" type="submit" value="Supprimer" onclick="supprimerCarte(); return false;" />
 					</div>
 				</div>
 			</form>
@@ -96,10 +131,8 @@
 					<tr>
 						<th>#</th>
 						<th>Nom</th>
-						<th>Action</th>
 					</tr>
 				</thead>
-				
 				<!-- Contenu du tableau -->
 				<tbody>
 					

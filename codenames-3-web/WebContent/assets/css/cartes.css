@@ -29,9 +29,9 @@ nav div ul li.active a:hover {
 	text-decoration: underline;
 }
 
-section[id="modifierCarte"]{
+/* section[id="modifierCarte"]{
 	display: none;
-}
+} */
 
 table thead {
 	background-color: rgb(124, 16, 16);
