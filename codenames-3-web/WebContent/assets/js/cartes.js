@@ -7,25 +7,53 @@ function rafraichir(){
 			for(let carte of cartes){
 				createRowCarte(carte);
 			}
+			//APPUI BOUTON DE MODIFICATION DE CARTES
 			$('tr td input[value="Modifier"]').bind('click', function(){
-				//je pars du bouton(this) je remonte  la racine (tr) du bouton, je cherche dans la racine(tr) le champe de saisie (input[class="input-field"]) e et je l'affiche
-				//$(this).closest('tr').find('input[value="Supprimer"]').setAttribute("disabled", "disabled");;
+				//désaciver les boutons modifier et supprimer
+				$(this).closest('tr').find('input[value="Modifier"]').attr('disabled', true);
+				$(this).closest('tr').find('input[value="Supprimer"]').attr('disabled', true);
+				//cacher le libellé de la carte
+				$(this).closest('tr').find('td span').hide();
+				//afficher le formulaire de saisie pour modifier le libellé du mot
 				$(this).closest('tr').find('input[class="input-field"]').show();
-				$(this).closest('tr').find('input[value="Valider"]').show();
+				//afficher les boutons valider et annuler
+				$(this).closest('tr').find('input[id="ValiderModif"]').show();
+				$(this).closest('tr').find('input[id="cancel"]').show();
 				return false;
 			});
-			$('tr td input[value="Valider"]').bind('click', function(){
-				//modifier la carte avec l'id de la ligne et le nouveau libellé
+			//MODIFIER LA CARTE AVEC L'ID DE LA LIGNE ET LE NOUVEAU LIBELLÉ
+			$('tr td input[id="ValiderModif"]').bind('click', function(){
+				//je pars du bouton(this) 
+				//je remonte  la racine (tr) du bouton
+				//je cherche dans la racine(tr) le champe de saisie (input[class="input-field"]) du libellé
+				//et je l'envoie dans la fonction de modification de carte
 				modifierCarte($(this).closest('tr').data('id'), $(this).closest('tr').find('input[class="input-field"]').val());
+				//désaciver les boutons
+				$(this).closest('tr').find('input[value="Supprimer"]').attr('disabled', false);
+				$(this).closest('tr').find('input[value="Modifier"]').attr('disabled', false);
+				//réafficher le nouveau libellé de la carte
+				$(this).closest('tr').find('td span').show();
 				//cacher des champs
 				$(this).closest('tr').find('input[class="input-field"]').hide();
-				$(this).closest('tr').find('input[value="Valider"]').hide();
-				$(this).closest('tr').find('input[value="Supprimer"]').show();
-				$(this).closest('tr').find('tr td input[value="Supprimer"]').disabled = false;
+				$(this).closest('tr').find('input[id="ValiderModif"]').hide();
 				return false;
 			});
+			//SUPPRIMER LA CARTE
 			$('tr td input[value="Supprimer"]').bind('click', function(){
 				supprimerCarte($(this).closest('tr').data('id'));
+				return false;
+			});
+			//ANNULER LA MODIFICATION DE LA CARTE
+			$('tr td input[id="cancel"]').bind('click', function(){
+				//réactiver les boutons
+				$(this).closest('tr').find('input[value="Modifier"]').attr('disabled', false);
+				$(this).closest('tr').find('input[value="Supprimer"]').attr('disabled', false);
+				//ré-afficher le libellé de la carte
+				$(this).closest('tr').find('td span').show();
+				//cacher le formulaire de modification et les boutons
+				$(this).closest('tr').find('input[class="input-field"]').hide();
+				$(this).closest('tr').find('input[id="ValiderModif"]').hide();
+				$(this).closest('tr').find('input[id="cancel"]').hide();
 				return false;
 			});
 		}
@@ -34,13 +62,13 @@ function rafraichir(){
 
 function createRowCarte(carte){
 	//CREATION DE COLONNES
-	var myColId = $('<td>' + carte.id + '</td>');
-	var myColLibelle = $('<td>' + carte.libelle + '</td>');
-	var myColButton = $('<td> <input class="btn btn-sucess" type="submit" value="Modifier"/>' + 
-							' <input class="btn btn-sucess" type="submit" value="Supprimer"/> ' + 
-							' <input type="text" class="input-field" id="saisieNewNom" name="newNom" value="' + carte.libelle + '" required/> '+
-							' <input class="btn btn-sucess" type="submit" value="Valider"/> </td>');
-	
+	var myColId = $('<td class="col1">' + carte.id + '</td>');
+	var myColLibelle = $('<td> <span>' + carte.libelle + '</span>'+
+							  '<input type="text" class="input-field" id="saisieNewNom" name="newNom" value="' + carte.libelle + '" required/><br/>'+
+							  '<input class="btn btn-sucess" type="submit" id="ValiderModif" value="Valider"/> ' + 
+							  '<input class="btn btn-sucess" type="submit" id="cancel" value="Annuler" /></td>');
+	var myColButton = $('<td class="col3"> <input class="btn btn-sucess" type="submit" value="Modifier" />' + 
+							' <input class="btn btn-sucess" type="submit" value="Supprimer" /> </td>');
 	//CREATION DE LA LIGNE
 	var myLigne = $('<tr data-id="' + carte.id + '" />');
 	
@@ -106,6 +134,9 @@ function supprimerCarte(id){
 	});
 }
 
+function cancel () {
+    document.execCommand('Stop')
+}
 
 
 rafraichir();
