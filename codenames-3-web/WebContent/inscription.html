@@ -9,7 +9,7 @@
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="assets/css/index.css" />
-
+<link rel="icon" href="https://www.geek.com/wp-content/uploads/2016/09/news-16-07-27-codenames-pictures-official-announcement-example-625x352.png">
 
 <title>Codenames Inscription</title>
 </head>
@@ -18,28 +18,30 @@
 	<div class=container>
 	<div id="milieu1">
 
-		<form class="needs-validation" novalidate action="/newaccount"
-			method=post
-			oninput='inputPassword5.setCustomValidity(inputPassword4.value != inputPassword5.value ? "Passwords do not match." : "")'>
+		<form method="POST" class="needs-validation" novalidate onsubmit="passwordCheck()">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="validationCustom01">First name</label> <input
 						type="text" class="form-control" id="validationCustom01"
 						placeholder="First name" placeholder="Your Name" required>
 					<div class="valid-feedback">Looks good!</div>
+					<div class="invalid-feedback">Please enter a name.</div>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="validationCustom02">Last name</label> <input
 						type="text" class="form-control" id="validationCustom02"
 						placeholder="Last name" placeholder="Your Last Name" required>
 					<div class="valid-feedback">Looks good!</div>
+					<div class="invalid-feedback">Please enter a last name.</div>
 				</div>
 			</div>
 
 			<div class="form-row">
 					<div class="form-group col-md-6">
 						<label for="inputEmail4">Email</label> <input type="email"
-							class="form-control" id="inputEmail4" placeholder="Email">
+							class="form-control" id="inputEmail4" placeholder="Email"required>
+								<div class="valid-feedback">Looks good!</div>
+							<div class="invalid-feedback">Please enter an email address.</div>
 					</div>
 			
 			
@@ -49,6 +51,7 @@
 						type="text" class="form-control" id="inputUsername"
 				placeholder="Your User Name" required>
 					<div class="valid-feedback">Looks good!</div>
+					<div class="invalid-feedback">Please enter an username.</div>
 					
 				</div>
 	</div>
@@ -57,11 +60,14 @@
 					<label for="inputPassword4">Password</label> <input type="password"
 						class="form-control" id="inputPassword4" placeholder="Password"
 						required>
+							<div class="valid-feedback">Looks good!</div>
+						<div class="invalid-feedback">Please enter a password.</div>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="inputPassword5">Confirm Password</label> <input
 						type="password" class="form-control" id="inputPassword5"
 						placeholder="Confirm Password">
+							<div class="valid-feedback">Looks good!</div>
 					<div class="invalid-feedback">Passwords do not match.</div>
 				</div>
 			</div>
@@ -76,7 +82,7 @@
 						submitting.</div>
 				</div>
 			</div>
-			<button class="btn btn-primary" type="submit">Submit form</button>
+			<button class="btn btn-primary" type="submit" >Submit form</button>
 		</form>
 </div>
 
@@ -131,7 +137,7 @@
 
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-		<script src="assets/js/plateau.js"></script>
+		<script src="assets/js/inscription.js"></script>
 
 	</div>
 </body>
