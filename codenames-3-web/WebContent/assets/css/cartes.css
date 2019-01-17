@@ -1,5 +1,4 @@
 h1 {
-	/* color: rgb(140, 24, 20); */
 	color: rgb(124,16,16)
 }
 
@@ -29,10 +28,6 @@ nav div ul li.active a:hover {
 	text-decoration: underline;
 }
 
-/* section[id="modifierCarte"]{
-	display: none;
-} */
-
 table thead {
 	background-color: rgb(124, 16, 16);
 	color: rgb(243, 242, 240);
@@ -43,34 +38,91 @@ form input[type="text"] {
 	box-sizing: border-box;
 }
 
-select.form-control {
+[id="saisieNewNom"].form-control {
+	width: 250px;
+	height: 25px;
+	box-sizing: border-box;
+}
+
+.form-control {
 	width: 300px;
 }
 
-form input[type="submit"] {	
+.btn-sucess {	
 	position: relative;
 	top: 0;
-	padding: 10px 20px;
+	padding: 5px 15px;
 	border-radius: 4px;
 	background: rgb(124, 16, 16);
+	color: white;
+	border: none;
+	box-shadow: 1px 1px #EEE;
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+
+.btn-sucess:hover{
+	top: -2px;
+	box-shadow: 2px 2px #EEE;
+}
+
+td input[value="Modifier"]{
+	position: relative;
+	top: 0;
+	width: 100px;
+	height: 25px;
+	padding: 0px 10px;
+	border-radius: 4px;
+	background: rgb(186, 61, 12);
 	color: white;
 	border: none;
 	box-shadow: 1px 1px #EEE;
 	
 	cursor: pointer;
 	transition: all 0.25s ease;
-	
+}
+td input[value="Supprimer"]{
+	position: relative;
+	top: 0;
+	width: 100px;
+	height: 25px;
+	padding: 0px 10px;
+	border-radius: 4px;
+	background: rgb(166, 42, 18);
+	color: white;
+	border: none;
+	box-shadow: 1px 1px #EEE;
+	cursor: pointer;
+	transition: all 0.25s ease;
 }
 
-form input[type="submit"]:hover {
-	top: -5px;
-	background: rgb(166,42,19);
-	box-shadow: 4px 4px #EEE;
+td input[value="Valider"]{
+ 	display: none;
+	position: relative;
+	top: 0;
+	width: 100px;
+	height: 25px;
+	padding: 0px 10px;
+	border-radius: 4px;
+	background: #78A419;
+	color: white;
+	border: none;
+	box-shadow: 1px 1px #EEE;
+	cursor: pointer;
+	transition: all 0.25s ease;
 }
 
-
-
-
+.input-field{
+	position: relative;
+	display: none;
+	height:25px;
+	width: 175px;
+	top: 2px;
+	border: 1px solid #C2C2C2;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
 
 
 

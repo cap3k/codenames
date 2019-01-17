@@ -24,3 +24,31 @@ container {
 }
 
 
+
+h1 {
+	/* color: rgb(140, 24, 20); */
+	color: rgb(124,16,16)
+}
+
+h2 {
+	color: rgb(166,42,19);
+}
+
+form input[type="submit"] {	
+	position: relative;
+	top: 0;
+	padding: 10px 20px;
+	border-radius: 4px;
+	background: rgb(124, 16, 16);
+	color: white;
+	border: none;
+	box-shadow: 1px 1px #EEE;
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+
+form input[type="submit"]:hover {
+	top: -5px;
+	background: rgb(166,42,19);
+	box-shadow: 4px 4px #EEE;
+}

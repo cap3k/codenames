@@ -6,24 +6,48 @@ function rafraichir(){
 		success : function(cartes) {
 			for(let carte of cartes){
 				createRowCarte(carte);
-				createListeDeroulanteCarte(carte);
 			}
+			$('tr td input[value="Modifier"]').bind('click', function(){
+				//je pars du bouton(this) je remonte  la racine (tr) du bouton, je cherche dans la racine(tr) le champe de saisie (input[class="input-field"]) e et je l'affiche
+				//$(this).closest('tr').find('input[value="Supprimer"]').setAttribute("disabled", "disabled");;
+				$(this).closest('tr').find('input[class="input-field"]').show();
+				$(this).closest('tr').find('input[value="Valider"]').show();
+				return false;
+			});
+			$('tr td input[value="Valider"]').bind('click', function(){
+				//modifier la carte avec l'id de la ligne et le nouveau libellé
+				modifierCarte($(this).closest('tr').data('id'), $(this).closest('tr').find('input[class="input-field"]').val());
+				//cacher des champs
+				$(this).closest('tr').find('input[class="input-field"]').hide();
+				$(this).closest('tr').find('input[value="Valider"]').hide();
+				$(this).closest('tr').find('input[value="Supprimer"]').show();
+				$(this).closest('tr').find('tr td input[value="Supprimer"]').disabled = false;
+				return false;
+			});
+			$('tr td input[value="Supprimer"]').bind('click', function(){
+				supprimerCarte($(this).closest('tr').data('id'));
+				return false;
+			});
 		}
 	});
-	
 }
 
 function createRowCarte(carte){
 	//CREATION DE COLONNES
 	var myColId = $('<td>' + carte.id + '</td>');
 	var myColLibelle = $('<td>' + carte.libelle + '</td>');
+	var myColButton = $('<td> <input class="btn btn-sucess" type="submit" value="Modifier"/>' + 
+							' <input class="btn btn-sucess" type="submit" value="Supprimer"/> ' + 
+							' <input type="text" class="input-field" id="saisieNewNom" name="newNom" value="' + carte.libelle + '" required/> '+
+							' <input class="btn btn-sucess" type="submit" value="Valider"/> </td>');
 	
 	//CREATION DE LA LIGNE
-	var myLigne = $('<tr />');
+	var myLigne = $('<tr data-id="' + carte.id + '" />');
 	
 	//ASSOCIER LES COLONNES A LA LIGNE
 	myLigne.append(myColId);
 	myLigne.append(myColLibelle);
+	myLigne.append(myColButton);
 	
 	//INSERER LA LIGNE AU TABLEAU
 	$('table tbody').append(myLigne);
@@ -32,14 +56,6 @@ function createRowCarte(carte){
 function deleteRowCarte(){	
 	//SUPPRIMER LES LIGNES DU TABLEAU
 	$('table tbody td').remove();
-}
-
-function createListeDeroulanteCarte(carte){
-	//CREATION DES LIGNES
-	var myId = $('<option value="'+ carte.id + '">' + carte.libelle + '</option>');
-	
-	//INSERER LA LIGNE AU TABLEAU
-	$('select[class="form-control"]').append(myId);
 }
 
 function ajouterCarte(){
@@ -59,10 +75,10 @@ function ajouterCarte(){
 	});
 }
 
-function modifierCarte(){
+function modifierCarte(id, libelle){
 	var maCarte = {
-		id: $('select[name="nomCarte"]').val(),
-		libelle : $('input[name="newNom"]').val()
+		id: id,
+		libelle : libelle
 	}
 	//REQUETE AJAX POUR AJOUTER LE PRODUIT
 	$.ajax({
@@ -76,11 +92,10 @@ function modifierCarte(){
 	});
 }
 
-function supprimerCarte(){
+function supprimerCarte(id){
 	var maCarte = {
-		id: $('select[name="nomCarteSupp"]').val()
+		id: id
 	}
-	alert(maCarte.id);
 	//REQUETE AJAX POUR AJOUTER LE PRODUIT
 	$.ajax({
 		method : 'DELETE',
@@ -90,5 +105,7 @@ function supprimerCarte(){
 		}
 	});
 }
+
+
 
 rafraichir();
