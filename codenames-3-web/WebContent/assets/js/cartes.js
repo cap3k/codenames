@@ -1,3 +1,18 @@
+function rafraichir(){
+	deleteRowCarte();
+	$.ajax({
+		method : 'GET',
+		url : 'http://192.168.1.110/codenames-ajax/carte',
+		success : function(cartes) {
+			for(let carte of cartes){
+				createRowCarte(carte);
+				createListeDeroulanteCarte(carte);
+			}
+		}
+	});
+	
+}
+
 function createRowCarte(carte){
 	//CREATION DE COLONNES
 	var myColId = $('<td>' + carte.id + '</td>');
@@ -12,6 +27,11 @@ function createRowCarte(carte){
 	
 	//INSERER LA LIGNE AU TABLEAU
 	$('table tbody').append(myLigne);
+}
+
+function deleteRowCarte(){	
+	//SUPPRIMER LES LIGNES DU TABLEAU
+	$('table tbody td').remove();
 }
 
 function createListeDeroulanteCarte(carte){
@@ -34,8 +54,7 @@ function ajouterCarte(){
 		data : JSON.stringify(maCarte),	//CONVERTIR L'OBJET JS EN JSON
 		contentType : 'application/json',	//DE QUOI EST FAIT LE FLUX
 		success : function(carte) {		//LA REPONSE DU SERVEUR
-			createRowCarte(carte);
-			createListeDeroulanteCarte(carte);
+			rafraichir();
 		}
 	});
 }
@@ -52,36 +71,24 @@ function modifierCarte(){
 		data : JSON.stringify(maCarte),	//CONVERTIR L'OBJET JS EN JSON
 		contentType : 'application/json',	//DE QUOI EST FAIT LE FLUX
 		success : function(carte) {		//LA REPONSE DU SERVEUR
-			createRowCarte(carte);
-			createListeDeroulanteCarte(carte);
+			rafraichir();
 		}
 	});
 }
 
 function supprimerCarte(){
 	var maCarte = {
-		id: $('select[name="nomCarte"]').val()
+		id: $('select[name="nomCarteSupp"]').val()
 	}
+	alert(maCarte.id);
 	//REQUETE AJAX POUR AJOUTER LE PRODUIT
 	$.ajax({
 		method : 'DELETE',
-		url : 'http://192.168.1.110/codenames-ajax/carte/#' + maCarte.id,
-		data : JSON.stringify(maCarte),	//CONVERTIR L'OBJET JS EN JSON
-		contentType : 'application/json',	//DE QUOI EST FAIT LE FLUX
+		url : 'http://192.168.1.110/codenames-ajax/carte/' + maCarte.id,
 		success : function(carte) {		//LA REPONSE DU SERVEUR
-			createRowCarte(carte);
-			createListeDeroulanteCarte(carte);
+			rafraichir();
 		}
 	});
 }
 
-$.ajax({
-	method : 'GET',
-	url : 'http://192.168.1.110/codenames-ajax/carte',
-	success : function(cartes) {
-		for(let carte of cartes){
-			createRowCarte(carte);
-			createListeDeroulanteCarte(carte);
-		}
-	}
-});
+rafraichir();
