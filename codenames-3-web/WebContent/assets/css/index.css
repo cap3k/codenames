@@ -1,19 +1,26 @@
-/* .vertical-align {
-    display: flex;
-    align-items: center;
-} */
 
-/* container{
-    margin: 0 auto;
-    width:80% value of your choice which suits your alignment
-} */
+container {
+	position: relative;
+}
 
-container{
- position relative;
+#message {
+	position: relative;
+	top: 45px;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
-form{
- position: absolute;
- top: 50%;
- left: 50%;
- transform: translate(-50%,-50%);
+
+#milieu1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
+
+ #instruction {
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
