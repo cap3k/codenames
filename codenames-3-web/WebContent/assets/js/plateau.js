@@ -1,8 +1,19 @@
 function letest(data) {
 	$("#table").empty();
-
+	var nbCase=$("#taille option:selected").text();
 	var nbCol = Math.sqrt($("#taille option:selected").text());
-
+	var couleurs =[];
+	for(var i=0; i<Math.floor(nbCase/2);i++){
+		couleurs.push('rouge');
+	}
+	for(var i=Math.floor(nbCase/2); i<nbCase-1;i++){
+		couleurs.push('bleu');
+	}
+	
+	couleurs.push('noir');
+	
+	couleurs=shuffle(couleurs);
+	
 	var monTableau = $('#table');
 	var listeMots = shuffle(data);
 	var k=0;
@@ -10,9 +21,13 @@ function letest(data) {
 		var myLine = $('<tr />');
 		for (var i = 0; i < nbCol; i++) {
 			var myCol = $('<td />');
-			var test = listeMots[k].libelle;
-			myCol.html('<button type="button" class="btn btn-outline-primary btn-block">'
-					+ test + '</button>');
+			
+			var maCase={
+					'libelle': listeMots[k].libelle,
+					'couleur': couleurs[k],
+			}
+			myCol.html('<button type="button" class="btn btn-outline-secondary btn-block" onclick="showColor(event, \''+maCase.couleur+'\')">'
+					+ maCase.libelle + '</button>');
 			myLine.append(myCol);
 			k=k+1;
 		}
@@ -20,6 +35,25 @@ function letest(data) {
 	}
 
 }
+
+
+function showColor(e, couleur){
+	var that = $(e.target);
+	that.removeClass('btn btn-outline-secondary btn-block');
+	if(couleur=="rouge"){
+		that.addClass('btn btn-outline-danger btn-block');
+	}
+	else if(couleur="bleu"){
+		that.addClass('btn btn-outline-primary btn-block');
+	}
+	else{
+		that.addClass('btn btn-outline-dark btn-block');
+		that.setAttribute("data-toggsle","modal");
+		that.setAttribute("data-target","#myModal");
+	}
+ 
+};
+
 
 function getMots() {
 	$.ajax({
