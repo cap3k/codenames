@@ -10,8 +10,10 @@
 				integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
 				crossorigin="anonymous" >
 		<link rel="stylesheet" type="text/css" href="assets/css/cartes.css" />
+		<link rel="icon" href="https://www.geek.com/wp-content/uploads/2016/09/news-16-07-27-codenames-pictures-official-announcement-example-625x352.png">
 	</head>
 	<body>
+
 		<nav class="navbar navbar-expand-lg">
 			<a class="navbar-brand" href="index.html">Accueil</a>
 			<!-- Bouton "hamburger" qui s'active si l'écran est trop petit -->
@@ -28,6 +30,7 @@
 					<li class="nav-item"><a class="nav-link" href="plateau.html">Jouer</a></li>
 				</ul>
 			</div>
+			<img class="avatar" src="img/codenames-logopng.png"/>
 		</nav>
 		<header>
 			<h1 class="text-center">Gestion des cartes</h1>
@@ -41,80 +44,20 @@
 				
 				<!-- Nom de la carte -->
 				<div class="form-group row">
-					<label for="nom" class="col-sm-3 col-form-label">Le nom de la carte&nbsp;:</label>
-					<div class="col-sm-9">
+					<label for="nom" class="col-sm-2 col-form-label">Le nom de la carte&nbsp;:</label>
+					<div class="col-sm-10">
 						<input type="text" class="form-control" id="nom" name="nom" placeholder="Le nom de la carte" required/>
 					</div>
 				</div>	
-				
 				<!-- Bouton "valider" -->
 				<div class="form-group row">
-					<div class="col-sm-3"></div>
-					<div class="col-sm-9">
-						<input class="btn btn-sucess" type="submit" value="Ajouter" onclick="ajouterCarte(); return false;" />
+					<div class="col-sm-2"></div>
+					<div class="col-sm-10">
+						<input class="btn btn-sucess" type="submit" value="Ajouter"/>
 					</div>
 				</div>
 			</form>
 		</section>
-		
-		<!-- <section class="container" id="modifierCarte">
-			<h2>Modifier une carte</h2>
-			Formulaire de modif d'une carte
-			<form method="GET">
-				Chaque zone est composé de 2 colonnes : 
-				type d'info + saisie label sur 2 colonnes
-				input et select sur 10 colonnes
-				
-				identifiant de la carte
-				<div class="form-group row">
-					<label for="nom" class="col-sm-3 col-form-label">Sélectionner une carte existante&nbsp;:</label>
-					<div class="col-sm-9">
-						<select class="form-control" id="nomCarte" name="nomCarte" required>
-						</select>
-					</div>
-				</div>
-				Nouveau nom de la carte
-				<div class="form-group row">
-					<label for="nom" class="col-sm-3 col-form-label">Le nouveau nom de la carte&nbsp;:</label>
-					<div class="col-sm-9">
-						<input type="text" class="form-control" id="newNom" name="newNom" placeholder="Nouveau nom de la carte" required/>
-					</div>
-				</div>
-				Bouton "valider"
-				<div class="form-group row">
-					<div class="col-sm-3"></div>
-					<div class="col-sm-9">
-						<input class="btn btn-sucess" type="submit" value="Mettre à jour" onclick="modifierCarte(); return false;" />
-					</div>
-				</div>
-			</form>
-		</section> -->
-		
-		<!-- <section class="container" id="supprimerCarte">
-			<h2>Supprimer une carte</h2>
-			Formulaire de suppression d'une carte
-			<form method="GET">
-				Chaque zone est composée de 2 colonnes : 
-				type d'info + saisie label sur 2 colonnes
-				input et select sur 10 colonnes
-				
-				identifiant de la carte
-				<div class="form-group row">
-					<label for="nom" class="col-sm-3 col-form-label">Sélectionner une carte existante&nbsp;:</label>
-					<div class="col-sm-9">
-						<select class="form-control" id="nomCarteSupp" name="nomCarteSupp" required>
-						</select>
-					</div>
-				</div>
-				Bouton "supprimer"
-				<div class="form-group row">
-					<div class="col-sm-3"></div>
-					<div class="col-sm-9">
-						<input class="btn btn-sucess" type="submit" value="supprimer" onclick="supprimerCarte(); return false;" />
-					</div>
-				</div>
-			</form>
-		</section> -->
 
 		<section class="container" id="listeCartes">
 			<h2>Liste des cartes</h2>

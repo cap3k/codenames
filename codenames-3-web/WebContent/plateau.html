@@ -28,11 +28,22 @@
 					<li class="nav-item active"><a class="nav-link" href="plateau.html">Jouer</a></li>
 				</ul>
 			</div>
+			<img class="avatar" src="img/codenames-logopng.png"/>
 		</nav>
 		<header>
 			<h1 class="text-center">C'est à vous!</h1>
 		</header>
 		<div class="container">
+			<select class="custom-select" id="taille"
+				onchange="getMots();">
+				<option selected>Choisissez la taille du plateau</option>
+				<option value="1">25</option>
+				<option value="2">36</option>
+				<option value="3">49</option>
+				<option value="3">64</option>
+				<option value="3">81</option>
+				<option value="3">100</option>
+			</select>
 			<!-- <div id="message" class="alert alert-primary" role="alert">
 				<h4 id="mot1" class="alert-heading">Indice :<span> Mot </span> <br /> Nombre de mot(s) :  <span> 3 </span></h4>
 			</div> -->
@@ -44,16 +55,7 @@
 				</table>
 				<p id="instruction">Cliquez sur les mots à deviner</p>
 	
-				<br> <select class="custom-select" id="taille"
-					onchange="getMots();">
-					<option selected>Choisissez la taille du plateau</option>
-					<option value="1">25</option>
-					<option value="2">36</option>
-					<option value="3">49</option>
-					<option value="3">64</option>
-					<option value="3">81</option>
-					<option value="3">100</option>
-				</select>
+				<br> 
 			</div>
 			<footer class="container fixed-bottom"> Copyright
 				codenames.fr © 2019 

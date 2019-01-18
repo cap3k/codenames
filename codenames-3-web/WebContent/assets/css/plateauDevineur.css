@@ -38,3 +38,21 @@ nav a:hover {
 nav div ul li.active a:hover {
 	text-decoration: underline;
 }
+
+.btn-sucess {	
+	position: relative;
+	top: 0;
+	padding: 5px 15px;
+	border-radius: 4px;
+	background: rgb(124, 16, 16);
+	color: white;
+	border: none;
+	box-shadow: 1px 1px #EEE;
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+
+.btn-sucess:hover{
+	top: -2px;
+	box-shadow: 2px 2px #EEE;
+}
