@@ -1,0 +1,161 @@
+img{
+	background-position: right center;;
+	background-repeat: no-repeat;
+	width: 70px;
+	height: auto;
+}
+
+h1 {
+	color: rgb(124,16,16)
+}
+
+h2 {
+	color: rgb(166,42,19);
+}
+
+nav {
+	background-color: rgb(124, 16, 16);
+}
+
+nav a, nav div ul li a {
+	color: rgb(243, 242, 240);
+	position: relative;
+	text-decoration: none;
+}
+
+nav div ul li.active a {
+	text-decoration: underline;
+}
+
+nav a:hover {
+	color: rgb(209, 93, 4);
+}
+
+nav div ul li.active a:hover {
+	text-decoration: underline;
+}
+
+table thead {
+	background-color: rgb(124, 16, 16);
+	color: rgb(243, 242, 240);
+}
+
+form input[type="text"] {
+	width: 300px;
+	box-sizing: border-box;
+}
+
+[id="saisieNewNom"].form-control {
+	width: 250px;
+	height: 25px;
+	box-sizing: border-box;
+}
+
+.form-control {
+	width: 300px;
+}
+
+.btn-sucess {	
+	position: relative;
+	top: 0;
+	padding: 5px 15px;
+	border-radius: 4px;
+	background: rgb(124, 16, 16);
+	color: white;
+	border: none;
+	box-shadow: 1px 1px #EEE;
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+
+.btn-sucess:hover{
+	top: -2px;
+	box-shadow: 2px 2px #EEE;
+}
+
+td input[value="Modifier"]{
+	position: relative;
+	top: 0;
+	width: 100px;
+	height: 25px;
+	padding: 0px 10px;
+	border-radius: 4px;
+	background: rgb(186, 61, 12);
+	color: white;
+	border: none;
+	box-shadow: 1px 1px #EEE;
+	
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+td input[value="Supprimer"]{
+	position: relative;
+	top: 0;
+	width: 100px;
+	height: 25px;
+	padding: 0px 10px;
+	border-radius: 4px;
+	background: rgb(166, 42, 18);
+	color: white;
+	border: none;
+	box-shadow: 1px 1px #EEE;
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+
+td input[id="ValiderModif"]{
+ 	display: none;
+	position: relative;
+	top: 0;
+	width: 75px;
+	height: 25px;
+	padding: 0px 10px;
+	border-radius: 4px;
+	background: #78A419;
+	color: white;
+	border: none;
+	box-shadow: 1px 1px #EEE;
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+
+td input[id="cancel"]{
+ 	display: none;
+	position: relative;
+	top: 0;
+	width: 75px;
+	height: 25px;
+	padding: 0px 10px;
+	border-radius: 4px;
+	background: #f00000;
+	color: white;
+	border: none;
+	box-shadow: 1px 1px #EEE;
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+
+.input-field{
+	position: relative;
+	display: none;
+	height:25px;
+	width: 175px;
+	top: 2px;
+	border: 1px solid #C2C2C2;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+td br{
+	position: relative;
+	top: 10px;
+}
+
+.col1{
+	width:60px;
+}
+
+.col3{
+	text-align: right;
+}
