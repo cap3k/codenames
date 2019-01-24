@@ -45,12 +45,6 @@ form input[type="text"] {
 	box-sizing: border-box;
 }
 
-[id="saisieNewNom"].form-control {
-	width: 250px;
-	height: 25px;
-	box-sizing: border-box;
-}
-
 .form-control {
 	width: 300px;
 }
@@ -73,7 +67,7 @@ form input[type="text"] {
 	box-shadow: 2px 2px #EEE;
 }
 
-td input[value="Modifier"]{
+td a.btn-info{
 	position: relative;
 	top: 0;
 	width: 100px;
@@ -84,11 +78,10 @@ td input[value="Modifier"]{
 	color: white;
 	border: none;
 	box-shadow: 1px 1px #EEE;
-	
 	cursor: pointer;
 	transition: all 0.25s ease;
 }
-td input[value="Supprimer"]{
+td a.btn-danger{
 	position: relative;
 	top: 0;
 	width: 100px;
@@ -96,38 +89,6 @@ td input[value="Supprimer"]{
 	padding: 0px 10px;
 	border-radius: 4px;
 	background: rgb(166, 42, 18);
-	color: white;
-	border: none;
-	box-shadow: 1px 1px #EEE;
-	cursor: pointer;
-	transition: all 0.25s ease;
-}
-
-td input[id="ValiderModif"]{
- 	display: none;
-	position: relative;
-	top: 0;
-	width: 75px;
-	height: 25px;
-	padding: 0px 10px;
-	border-radius: 4px;
-	background: #78A419;
-	color: white;
-	border: none;
-	box-shadow: 1px 1px #EEE;
-	cursor: pointer;
-	transition: all 0.25s ease;
-}
-
-td input[id="cancel"]{
- 	display: none;
-	position: relative;
-	top: 0;
-	width: 75px;
-	height: 25px;
-	padding: 0px 10px;
-	border-radius: 4px;
-	background: #f00000;
 	color: white;
 	border: none;
 	box-shadow: 1px 1px #EEE;
@@ -152,10 +113,10 @@ td br{
 	top: 10px;
 }
 
-.col1{
-	width:60px;
+td.col1{
+	width:15px;
 }
 
-.col3{
-	text-align: right;
+td.col3{
+	width:250px;
 }

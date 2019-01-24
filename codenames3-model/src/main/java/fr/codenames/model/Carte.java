@@ -16,7 +16,7 @@ public class Carte {
 	private int id;
 	
 	@Column(name="CAR_LIBELLE", nullable=false)
-	@NotEmpty
+	@NotEmpty(message="Le nom de la carte doit etre saisi")
 	@NotNull
 	private String libelle;
 	
