@@ -1,0 +1,45 @@
+nav img{
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 70px;
+	height: auto;
+}
+
+h1 {
+	color: rgb(124,16,16)
+}
+
+h2 {
+	color: rgb(166,42,19);
+}
+
+nav {
+	background-color: rgb(124, 16, 16);
+}
+
+nav a, nav div ul li a {
+	color: rgb(243, 242, 240);
+	position: relative;
+	text-decoration: none;
+}
+
+nav div ul li.active a {
+	text-decoration: underline;
+}
+
+nav a:hover {
+	color: rgb(209, 93, 4);
+}
+
+nav div ul li.active a:hover {
+	text-decoration: underline;
+}
+
+img{
+	position: relative;
+	width: 600px;
+	height: auto;
+	top: auto;
+	left: 50%;
+	transform: translate(-50%, 5%);
+}
