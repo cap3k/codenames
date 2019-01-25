@@ -64,10 +64,11 @@ form input[type="text"] {
 
 .btn-sucess:hover{
 	top: -2px;
+	color: white;
 	box-shadow: 2px 2px #EEE;
 }
 
-td a.btn-info{
+.btn-info{
 	position: relative;
 	top: 0;
 	width: 100px;
@@ -81,7 +82,16 @@ td a.btn-info{
 	cursor: pointer;
 	transition: all 0.25s ease;
 }
-td a.btn-danger{
+
+.btn-info:hover{
+	position: relative;
+	top: -2px;
+	color: white;
+	background: rgb(186, 61, 12);
+	box-shadow: 2px 2px #EEE;
+}
+
+.btn-danger{
 	position: relative;
 	top: 0;
 	width: 100px;
@@ -94,6 +104,17 @@ td a.btn-danger{
 	box-shadow: 1px 1px #EEE;
 	cursor: pointer;
 	transition: all 0.25s ease;
+}
+
+
+
+.btn-danger:hover{
+	position: relative;
+	top: -2px;
+	color: white;
+	background: rgb(166, 42, 18);
+	box-shadow: 2px 2px #EEE;
+
 }
 
 .input-field{

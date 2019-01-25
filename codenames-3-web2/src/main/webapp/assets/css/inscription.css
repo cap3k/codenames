@@ -1,5 +1,5 @@
 nav img{
-	background-position: center;
+	background-position: right center;
 	background-repeat: no-repeat;
 	width: 70px;
 	height: auto;
@@ -35,11 +35,33 @@ nav div ul li.active a:hover {
 	text-decoration: underline;
 }
 
-img{
+.btn-sucess {	
 	position: relative;
-	width: 600px;
-	height: auto;
-	top: auto;
+	top: 0;
+	padding: 5px 15px;
+	border-radius: 4px;
+	background: rgb(124, 16, 16);
+	color: white;
+	border: none;
+	box-shadow: 1px 1px #EEE;
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+
+.btn-sucess:hover{
+	top: -2px;
+	color: white;
+	box-shadow: 2px 2px #EEE;
+}
+
+#inscription {
+ 	position: absolute;
+ 	top:17%;
 	left: 50%;
-	transform: translate(-50%, 5%);
+	transform: translate(-50%, 1%);
+}
+
+.form-group{
+	width: 500px;
+	box-sizing: border-box;
 }
