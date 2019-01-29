@@ -1,4 +1,4 @@
-package fr.codenames.utilisateurPrincipal;
+package fr.codenames.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,16 +9,16 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import fr.formation.model.Client;
+import fr.codenames.model.Utilisateur;
 
-public class ClientPrincipal implements UserDetails {
-	private Client client;
+public class UtilisateurPrincipal implements UserDetails {
+	private Utilisateur utilisateur;
 
-	public ClientPrincipal(Client client) {
-		if (client == null) {
+	public UtilisateurPrincipal(Utilisateur utilisateur) {
+		if (utilisateur == null) {
 			throw new UsernameNotFoundException("L'utilisateur n'existe pas.");
 		}
-		this.client = client;
+		this.utilisateur = utilisateur;
 	}
 
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -30,13 +30,13 @@ public class ClientPrincipal implements UserDetails {
 
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return this.client.getPassword();
+		return this.utilisateur.getPassword();
 
 	}
 
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return this.client.getEmail();
+		return this.utilisateur.getUsername();
 	}
 
 	public boolean isAccountNonExpired() {
