@@ -6,14 +6,16 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import fr.codenames.dao.IDAOJoueur;
 import fr.codenames.dao.IDAOUtilisateur;
 
 @Service
 public class AuthService implements UserDetailsService {
 	@Autowired
-	IDAOUtilisateur daoUtilisateur;
+	//IDAOUtilisateur daoUtilisateur;
+	IDAOJoueur daoJoueur;
 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return new UtilisateurPrincipal(daoUtilisateur.findByUsername(username));
+		return new UtilisateurPrincipal(daoJoueur.findByUsername(username));
 	}
 }

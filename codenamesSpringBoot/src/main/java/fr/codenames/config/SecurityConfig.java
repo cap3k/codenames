@@ -10,9 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
-
-
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -20,13 +17,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/assets/**").permitAll().antMatchers("/**").hasAnyRole("ADMIN", "USER")
-				.and().formLogin().loginPage("/ma_page_de_login").loginProcessingUrl("/perform_login")
-				.defaultSuccessUrl("/produit", true).failureUrl("/ma_page_de_login?error=true").permitAll().and().logout()
-				.logoutUrl("/ma_page_de_deconnexion").logoutSuccessUrl("/ma_page_de_login").permitAll();
+				.and().formLogin().loginPage("/connexion").loginProcessingUrl("/perform_login")
+				.defaultSuccessUrl("/accueil", true).failureUrl("/connexion?error=true").permitAll().and().logout()
+				.logoutUrl("/liste-cartes").logoutSuccessUrl("/connexion").permitAll();
 	}
-	
 
-	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 	return new BCryptPasswordEncoder();
