@@ -9,12 +9,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import fr.codenames.model.Utilisateur;
 import fr.formation.model.Client;
 
-public class ClientPrincipal implements UserDetails {
-	private Client client;
+public class UtilisateurPrincipal implements UserDetails {
+	private Utilisateur utilisateur;
 
-	public ClientPrincipal(Client client) {
+	public UtilisateurPrincipal(Utili client) {
 		if (client == null) {
 			throw new UsernameNotFoundException("L'utilisateur n'existe pas.");
 		}

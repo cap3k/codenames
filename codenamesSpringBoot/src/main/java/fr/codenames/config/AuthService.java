@@ -16,7 +16,7 @@ public class AuthService implements UserDetailsService {
 IDAOUtilisateur daoUtilisateur;
 
 public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-	return new UtilisateurPrincipal(daoUtilisateur.findByEmail(username));
+	return new UtilisateurPrincipal();
 //...
 }
 }
