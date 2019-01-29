@@ -16,10 +16,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/assets/**").permitAll().antMatchers("/**").hasAnyRole("ADMIN", "USER")
-				.and().formLogin().loginPage("/connexion").loginProcessingUrl("/perform_login")
-				.defaultSuccessUrl("/accueil", true).failureUrl("/connexion?error=true").permitAll().and().logout()
-				.logoutUrl("/liste-cartes").logoutSuccessUrl("/connexion").permitAll();
+		http.authorizeRequests()
+				.antMatchers("/css/**").permitAll()
+				.antMatchers("/images/**").permitAll()
+				.antMatchers("/js/**").permitAll()
+				.antMatchers("/**").hasAnyRole("ADMIN", "USER")
+			.and()
+			.formLogin()
+				.loginPage("/connexion")
+				.loginProcessingUrl("/perform_login")
+				.defaultSuccessUrl("/accueil", true)
+				.failureUrl("/connexion?error=true")
+				.permitAll()
+			.and()
+			.logout()
+				.logoutUrl("/liste-cartes")
+				.logoutSuccessUrl("/connexion")
+				.permitAll();
 	}
 
 	@Bean

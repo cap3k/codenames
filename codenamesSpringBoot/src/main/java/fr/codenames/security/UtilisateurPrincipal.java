@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import fr.codenames.model.TypeUtilisateur;
 import fr.codenames.model.Utilisateur;
 
 public class UtilisateurPrincipal implements UserDetails {
@@ -22,10 +23,14 @@ public class UtilisateurPrincipal implements UserDetails {
 	}
 
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> myAuthorities = new ArrayList<GrantedAuthority>();
-		myAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		List<GrantedAuthority> myAuthorities = new ArrayList<GrantedAuthority>();		
+		if (this.utilisateur.getType() == TypeUtilisateur.ADMINISTRATEUR) { //C'EST L'ADMIN
+			myAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+		}
+		else { //C'EST PAS L'ADMIN
+			myAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+		}
 		return myAuthorities;
-
 	}
 
 	public String getPassword() {
