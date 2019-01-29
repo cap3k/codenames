@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.Random;
 
 import javax.persistence.*;
+@NamedQueries({
+	@NamedQuery(
+	name="Grille.findCaseByGrilleID",
+	query="select c from Case c where c.grille.id = :id"
+	)
+	})
 
 
 @Entity
@@ -24,6 +30,22 @@ public class Grille {
 	@Enumerated(EnumType.ORDINAL)
 	private Difficulte difficulte;
 	
+	public List<Partie> getParties() {
+		return parties;
+	}
+
+	public void setParties(List<Partie> parties) {
+		this.parties = parties;
+	}
+
+	public List<Case> getCases() {
+		return cases;
+	}
+
+	public void setCases(List<Case> cases) {
+		this.cases = cases;
+	}
+
 	@OneToMany(mappedBy="grille", cascade = CascadeType.PERSIST)
 	private List<Case> cases;
 
@@ -47,7 +69,7 @@ public class Grille {
 	public void generer25Cases(List<Carte> cartesRandom, Difficulte d) {
 		 		 
 		    List<Case> les25casesShuffle = new ArrayList<Case> ();
-		    List<Case> les25cases = new ArrayList<Case> ();
+		   
 			int m = 9; // nombre de cas a deviner pour l'equipe qui commence
 			Random random = new Random();
 			int nbNoire = d.ordinal();
@@ -94,5 +116,7 @@ public class Grille {
 			Collections.shuffle(les25casesShuffle);
 			this.cases=les25casesShuffle;
 		}
+
+	
 		
 }
