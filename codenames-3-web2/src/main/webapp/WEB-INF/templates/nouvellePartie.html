@@ -18,10 +18,10 @@
 
 
 		<div id="milieu">
-			<h1> Rejoindre une partie éxistante</h1>
+			<h1>Créer une nouvelle partie</h1>
 			<form method="post">
-					<input type="hidden" value="2" name="joueur.id">
-				Choisissez votre équipe <select class="custom-select" name="equipe">
+				<input type="hidden" value="2" name="joueur.id"> Choisissez
+				votre équipe <select class="custom-select" name="equipe">
 					<option selected>Choisissez votre équipe</option>
 					<option value="0">Les Rouges</option>
 					<option value="1">Les Bleus</option>
@@ -34,27 +34,17 @@
 					<option selected>Captaine?</option>
 					<option value="0">Non</option>
 					<option value="1">Oui</option>
-				</select> Choisissez votre partie <select class="custom-select"
-					name="partie.id">
-					<option th:each="partie : ${parties}" th:value="${partie.id}">
-						[[${partie.id }]]</option>
-					
-				</select> 
-				
-		<!-- <div id="ifYes" style="display: none;">
-			Choisissez la difficulté <select class="custom-select"
+				</select> Choisissez la difficulté <select class="custom-select"
 					name="partie.grille.difficulte">
 					<option selected>Choisissez la difficulté</option>
 					<option value="FACILE">Facile</option>
 					<option value="MOYEN">Moyen</option>
 					<option value="DIFFICILE">Difficile</option>
 
-				</select> -->
-				 <input type="submit" value="OK">
-			
+				</select> <input type="submit" value="OK">
 			</form>
-		
-			
+
+
 
 			<div id="myModal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
