@@ -14,12 +14,14 @@ function showColor(e, couleur) {
 	}
 
 };
-//function showAll(role) {
-//	if (role == 0) {
-//		$("#button").trigger('click');
-//	}
-//}
 
+if ($('div[data-role_id]').data('role_id')=="0") {
+	$('button[data-col_id="ROUGE"]').addClass('btn btn-danger btn-block');
+	$('button[data-col_id="BLEUE"]').removeClass('btn btn-secondary btn-block')
+	$('button[data-col_id="BLEUE"]').addClass('btn btn-primary btn-block');
+	$('button[data-col_id="NEUTRE"]').addClass('btn btn-warning btn-block');
+	$('button[data-col_id="NOIRE"]').addClass('btn btn-dark btn-block');
+}
 var eventSource = new EventSource(
 		"http://192.168.1.103/codenames-3-web2/plateauDevineur/listen-new");
 

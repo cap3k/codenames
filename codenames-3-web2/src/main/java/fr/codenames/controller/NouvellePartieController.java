@@ -17,6 +17,7 @@ import fr.codenames.dao.IDAOGrille;
 import fr.codenames.dao.IDAOParticipation;
 import fr.codenames.dao.IDAOPartie;
 import fr.codenames.model.Carte;
+import fr.codenames.model.Case;
 import fr.codenames.model.Grille;
 import fr.codenames.model.Participation;
 import fr.codenames.model.Partie;
@@ -24,7 +25,8 @@ import fr.codenames.model.Partie;
 
 
 @Controller
-public class PartieController {
+public class NouvellePartieController {
+	
 	@Autowired
 	private IDAOGrille daoGrille;
 	
@@ -37,16 +39,28 @@ public class PartieController {
 	@Autowired
 	private IDAOParticipation daoParticipation;
 	
-	@RequestMapping(value="/partie", method=RequestMethod.GET)
-	public String home(Model model) {
-		List<Partie> mesParties = new ArrayList<Partie>();
-		mesParties = daoPartie.findAll();
-		model.addAttribute("parties", mesParties);
-		return "partie";
+	
+	@RequestMapping(value="/nouvellePartie", method=RequestMethod.GET)
+	public String home2(Model model) {
+	
+		return "nouvellePartie";
 		}
 	
 	@PostMapping({ "/partie" })
 	public String creerParticipation(@ModelAttribute Participation participation, Model model) {
+		
+		Grille grille = new Grille();
+		List<Carte> mesCartes = new ArrayList<Carte>();
+		
+		mesCartes = daoCarte.findAll();
+		Collections.shuffle(mesCartes);
+		
+		grille.generer25Cases(mesCartes, participation.getPartie().getGrille().getDifficulte());
+		
+		Partie partie = new Partie();
+		partie.setGrille(grille);
+	
+		participation.setPartie(partie);
 		
 		daoParticipation.save(participation);
 		boolean equipeId = participation.getEquipe();
@@ -58,5 +72,4 @@ public class PartieController {
 		
 		return "redirect:/plateau/"+id+"/"+equipeId+"/"+roleId+"/"+capitaineId;
 	}
-	
 }
