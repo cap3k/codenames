@@ -46,7 +46,7 @@ public class NouvellePartieController {
 		return "nouvellePartie";
 		}
 	
-	@PostMapping({ "/partie" })
+	@PostMapping({ "/nouvellePartie" })
 	public String creerParticipation(@ModelAttribute Participation participation, Model model) {
 		
 		Grille grille = new Grille();

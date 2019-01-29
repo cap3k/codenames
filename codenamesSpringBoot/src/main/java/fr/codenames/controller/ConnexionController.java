@@ -17,22 +17,22 @@ public class ConnexionController {
 	@Autowired
 	private IDAOJoueur daoJoueur;
 	
-	@GetMapping({ "" })
+	@GetMapping("")
 	public String connexionJoueur() {
 		return "connexion";
 	}
 	
 	@PostMapping("")
-	public String connexionJoueur(@RequestParam String userName, @RequestParam String pwd, Model model) {
+	public String connexionJoueur(@RequestParam String username, @RequestParam String password, Model model) {
 		
-		model.addAttribute("joueur", daoJoueur.auth(userName, pwd));
+		model.addAttribute("joueur", daoJoueur.auth(username, password));
 //VERIFICATION RENSIGNEMENT CHAMPS DE CONNEXION
-		if (userName.equals("")) {
+		if (username.equals("")) {
 			//username � renseigner
 			String msgUser;
 			msgUser="Veuillez rensigner un nom d'utilisateur";
 			model.addAttribute("msgUser", msgUser);
-			if (pwd.equals("")) {
+			if (password.equals("")) {
 				//mot de passe � renseigner
 				String msgPwd;
 				msgPwd="Veuillez rensigner un mot de passe";
@@ -45,7 +45,7 @@ public class ConnexionController {
 		}
 
 //CONNEXION	
-		if(daoJoueur.auth(userName, pwd) == null) {
+		if(daoJoueur.auth(username, password) == null) {
 			//mauvais username ou password
 			String msgWrong;
 			msgWrong="Le nom d'utilisateur ou le mot de passe est incorrect";
@@ -53,7 +53,7 @@ public class ConnexionController {
 			return "connexion";
 		}
 		else {
-			if(daoJoueur.authBanni(userName)!=null) {
+			if(daoJoueur.authBanni(username)!=null) {
 				//vous etes banni
 				String msgBanni;
 				msgBanni="Vous etes banni!";
