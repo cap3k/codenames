@@ -1,0 +1,67 @@
+nav img{
+	background-position: right center;
+	background-repeat: no-repeat;
+	width: 70px;
+	height: auto;
+}
+
+h1 {
+	color: rgb(124,16,16)
+}
+
+h2 {
+	color: rgb(166,42,19);
+}
+
+nav {
+	background-color: rgb(124, 16, 16);
+}
+
+nav a, nav div ul li a {
+	color: rgb(243, 242, 240);
+	position: relative;
+	text-decoration: none;
+}
+
+nav div ul li.active a {
+	text-decoration: underline;
+}
+
+nav a:hover {
+	color: rgb(209, 93, 4);
+}
+
+nav div ul li.active a:hover {
+	text-decoration: underline;
+}
+
+.btn-sucess {	
+	position: relative;
+	top: 0;
+	padding: 5px 15px;
+	border-radius: 4px;
+	background: rgb(124, 16, 16);
+	color: white;
+	border: none;
+	box-shadow: 1px 1px #EEE;
+	cursor: pointer;
+	transition: all 0.25s ease;
+}
+
+.btn-sucess:hover{
+	top: -2px;
+	color: white;
+	box-shadow: 2px 2px #EEE;
+}
+
+#inscription {
+ 	position: absolute;
+ 	top:17%;
+	left: 50%;
+	transform: translate(-50%, 1%);
+}
+
+.form-group{
+	width: 500px;
+	box-sizing: border-box;
+}
