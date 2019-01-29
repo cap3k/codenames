@@ -19,11 +19,11 @@ public abstract class Utilisateur {
 	@NotNull
 	private String prenom;
 	
-	@NotEmpty
+	@NotEmpty(message="Le nom d'utilisateur doit etre saisi")
 	@NotNull
 	private String username;
 	
-	@NotEmpty
+	@NotEmpty(message="Le mot de passe doit etre saisi")
 	private String password;
 
 	public int getId() {
