@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Code Names</title>
-		<!-- <base href="/codenames/" /> -->
 		<meta name="Description" content="Jouez à code names">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" 
@@ -19,7 +18,7 @@
 				<ul class="navbar-nav">
 				</ul>
 			</div>
-			<img class="avatar" src="images/codenames-logopng.png"/>
+			<img class="avatar" src="/images/codenames-logopng.png"/>
 		</nav>
 		<section class="container" id="erreurIdentificationJoueur">
 			<div th:if="${joueur != null}">
@@ -48,8 +47,7 @@
 					<p>[[${msgPwd}]]</p>
 				</div>
 				<div>
-					<input class="btn btn-sucess"  type="submit" value="Connexion"/>
-					<a class="float-right" href="connexionAdmin">Se connecter en tant qu'administrateur</a>		
+					<input class="btn btn-sucess"  type="submit" value="Connexion"/>	
 				</div>
 			</form>
 		</div>

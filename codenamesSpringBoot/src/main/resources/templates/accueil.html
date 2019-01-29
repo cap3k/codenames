@@ -1,40 +1,49 @@
-<html xmlns:th="http://www.thymeleaf.org">
+
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<head>
-		<meta charset="ISO-8859-1" />
+		<meta charset="UTF-8" />
 		<title>Code Names</title>
-		<!-- <base href="/codenames/" /> -->
-		<meta name="Description" content="Jouez à code names">
+		<meta name="Description" content="Jouez Ã  code names">
 		<link rel="stylesheet" 
 				href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
 				integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
 				crossorigin="anonymous" >
-		<link rel="stylesheet" type="text/css" href="assets/css/accueil.css" />
+		<link rel="stylesheet" type="text/css" href="/css/accueil.css" />
 		<link rel="icon" href="https://www.geek.com/wp-content/uploads/2016/09/news-16-07-27-codenames-pictures-official-announcement-example-625x352.png">
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg">
 			<a class="navbar-brand" href="accueil.html">Accueil</a>
-			<!-- Bouton "hamburger" qui s'active si l'écran est trop petit -->
+			<!-- Bouton "hamburger" qui s'active si l'Ã©cran est trop petit -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarNav" aria-controls="navbarNav"
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<!-- Menu à proprement parler -->
+			<!-- Menu ï¿½ proprement parler -->
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" href="carte">Gestion des cartes</a></li>
 					<li class="nav-item"><a class="nav-link" href="plateau">Jouer</a></li>
-					<li class="nav-item"><a class="nav-link" href="connexion">Déconnexion</a></li>
+					<li class="nav-item"><a class="nav-link" href="connexion">DÃ©connexion</a></li>
 				</ul>
 			</div>
 			<img class="avatar" src="images/codenames-logopng.png"/>
 		</nav>
 		<header>
-			<h1 class="text-center">Règles du jeu</h1>
+			<h1 class="text-center">Regles du jeu</h1>
 		</header>
+		
+		<p sec:authorize="hasRole('ROLE_USER')">
+			Bonjour utilisateur !
+		</p>
+
+		<p sec:authorize="hasRole('ROLE_ADMIN')">
+			Bonjour Admin !
+		</p>
+		
 		<section class="container" id="regles">
 			<p>
 				<img class="avatar" src="images/Codenames_regles-1.png"/> 
