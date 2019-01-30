@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fr.codenames.dao.IDAOJoueur;
 
 @Controller
-@RequestMapping("/connexion")
-public class ConnexionController {
+@RequestMapping("/deconnexion")
+public class DeconnexionController {
 	
 	@GetMapping("")
-	public String connexionJoueur() {
-		return "connexion";
-	}
+    public String deconnexion(HttpSession session, Model model) {
+        session.invalidate();
+        return "connexion";
+    }
 }

@@ -1,0 +1,28 @@
+nav img{
+	background-position: right center;
+	background-repeat: no-repeat;
+	width: 70px;
+	height: auto;
+}
+
+nav {
+	background-color: rgb(124, 16, 16);
+}
+
+nav a, nav div ul li a {
+	color: rgb(243, 242, 240);
+	position: relative;
+	text-decoration: none;
+}
+
+nav div ul li.active a {
+	text-decoration: underline;
+}
+
+nav a:hover {
+	color: rgb(209, 93, 4);
+}
+
+nav div ul li.active a:hover {
+	text-decoration: underline;
+}

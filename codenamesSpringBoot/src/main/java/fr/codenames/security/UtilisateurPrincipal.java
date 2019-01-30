@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import fr.codenames.model.Joueur;
 import fr.codenames.model.TypeUtilisateur;
 import fr.codenames.model.Utilisateur;
 
@@ -58,10 +59,18 @@ public class UtilisateurPrincipal implements UserDetails {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
+	
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
+		return true;		
 	}
 
+//	public boolean isEnabled() {
+//		if (this.utilisateur.getType()==TypeUtilisateur.JOUEUR && joueur.isBanni==true) {
+//			return false;
+//		}
+//		else {
+//			return true;
+//		}		
+//	}
+	
 }
