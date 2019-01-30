@@ -34,7 +34,7 @@ function showColor2(e,grille,i){
 	
 		$.ajax({
 			method : 'post',
-			url : 'http://192.168.1.124:8080/plateau',
+			url : 'http://localhost:8080/plateau',
 			contentType : 'application/json',
 			headers: {"X-CSRF-TOKEN": $("input[name=_csrf]").val()},
 			data : JSON.stringify({
