@@ -11,4 +11,5 @@ import fr.codenames.model.Grille;
 
 public interface IDAOGrille extends JpaRepository<Grille, Integer> {
 	public List<Case> findCaseByGrilleID(@Param("id") int id);
+	
 }

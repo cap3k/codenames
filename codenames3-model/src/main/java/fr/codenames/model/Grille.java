@@ -11,8 +11,7 @@ import javax.persistence.*;
 	name="Grille.findCaseByGrilleID",
 	query="select c from Case c where c.grille.id = :id"
 	)
-	})
-
+})
 
 @Entity
 @Table(name="grille")

@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
+<base href="/codenames/" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
@@ -20,6 +21,7 @@
 		<div id="milieu">
 			<h1> Rejoindre une partie éxistante</h1>
 			<form method="post">
+				<input type="hidden" th:name="${ _csrf.parameterName }" th:value="${ _csrf.token }" />
 					<input type="hidden" value="2" name="joueur.id">
 				Choisissez votre équipe <select class="custom-select" name="equipe">
 					<option selected>Choisissez votre équipe</option>
@@ -41,49 +43,15 @@
 					
 				</select> 
 				
-		<!-- <div id="ifYes" style="display: none;">
-			Choisissez la difficulté <select class="custom-select"
-					name="partie.grille.difficulte">
-					<option selected>Choisissez la difficulté</option>
-					<option value="FACILE">Facile</option>
-					<option value="MOYEN">Moyen</option>
-					<option value="DIFFICILE">Difficile</option>
-
-				</select> -->
 				 <input type="submit" value="OK">
 			
 			</form>
-		
 			
-
-			<div id="myModal" class="modal fade" role="dialog">
-				<div class="modal-dialog">
-
-					<!-- Modal content-->
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Modal Header</h4>
-						</div>
-						<div class="modal-body">
-							<p>Some text in the modal.</p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">Close</button>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-
-
 			<footer class="container fixed-bottom"> Copyright
 				codenames.fr 2019 </footer>
 
 
-			<script src="assets/js/plateau.js"></script>
+			<script src="/js/plateau.js"></script>
 			<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 				integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 				crossorigin="anonymous"></script>

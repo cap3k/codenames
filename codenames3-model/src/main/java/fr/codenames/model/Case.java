@@ -2,6 +2,8 @@ package fr.codenames.model;
 
 import javax.persistence.*;
 
+
+
 @Entity
 @Table(name="[case]")
 public class Case {

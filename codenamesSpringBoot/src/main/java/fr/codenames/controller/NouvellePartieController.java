@@ -49,17 +49,21 @@ public class NouvellePartieController {
 	@PostMapping({ "/nouvellePartie" })
 	public String creerParticipation(@ModelAttribute Participation participation, Model model) {
 		
+		//On génère la Grille
 		Grille grille = new Grille();
 		List<Carte> mesCartes = new ArrayList<Carte>();
-		
 		mesCartes = daoCarte.findAll();
 		Collections.shuffle(mesCartes);
-		
 		grille.generer25Cases(mesCartes, participation.getPartie().getGrille().getDifficulte());
-		
+//		grille.setDifficulte(participation.getPartie().getGrille().getDifficulte());
+		daoGrille.save(grille);
+	
+		//On génère la partie
 		Partie partie = new Partie();
 		partie.setGrille(grille);
+		daoPartie.save(partie);
 	
+		//On génère la participation
 		participation.setPartie(partie);
 		
 		daoParticipation.save(participation);
