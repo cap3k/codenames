@@ -1,57 +1,55 @@
-<html xmlns:th="http://www.thymeleaf.org">
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<head>
-		<meta charset="ISO-8859-1" />
+		<meta charset="UTF-8" />
 		<title>Code Names</title>
-		<!-- <base href="/codenames/" /> -->
-		<meta name="Description" content="Jouez à code names">
-		<!-- <base href="/codenames-3-web/"> -->
+		<meta name="Description" content="Jouez Ã  code names">
 		<link rel="stylesheet" 
 				href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
 				integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
 				crossorigin="anonymous" >
-		<link rel="stylesheet" type="text/css" href="assets/css/cartes.css" />
+		<link rel="stylesheet" type="text/css" href="/css/cartes.css" />
 		<link rel="icon" href="https://www.geek.com/wp-content/uploads/2016/09/news-16-07-27-codenames-pictures-official-announcement-example-625x352.png">
 	</head>
 	<body>
-		<nav class="navbar navbar-expand-lg">
-			<a class="navbar-brand" href="accueil.html">Accueil</a>
-			<!-- Bouton "hamburger" qui s'active si l'écran est trop petit -->
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarNav" aria-controls="navbarNav"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<!-- Menu à proprement parler -->
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item active"><a class="nav-link" href="carte">Gestion des cartes</a></li>
-					<li class="nav-item"><a class="nav-link" href="plateau">Jouer</a></li>
-					<li class="nav-item"><a class="nav-link" href="connexion">Déconnexion</a></li>
-				</ul>
-			</div>
-			<img class="avatar" src="images/codenames-logopng.png"/>
-		</nav>
+		<div th:replace="navigation" ></div>
 		<header>
 			<h1 class="text-center">Gestion des cartes</h1>
 		</header>
 		<p></p>
 		<section class="container" id="ajouterCarte">
 			<p>
-				<a href="carte/ajouter" class="btn btn-sucess" role="button">Ajouter une carte</a>
+				<a href="/carte/ajouter" class="btn btn-sucess" role="button">Ajouter une carte</a>
 			</p>
 		</section>
 		
 		<section class="container" id="listeCartes">
 			<h2>Liste des cartes</h2>
-			<!-- Tableau des produits - striped pour avoir 1 ligne sur 2 coloré -->
-			<table id="cartes" class="table table-striped">
-				<!-- En-tête du tableau (le titre des colonnes) -->
+			<!-- Tableau des produits - striped pour avoir 1 ligne sur 2 colorÃ© -->
+			<table sec:authorize="hasRole('ROLE_USER')" id="cartes" class="table table-striped">
+				<!-- En-tÃªte du tableau (le titre des colonnes) -->
 				<thead>
 					<tr>
 						<th class="col1">id</th>
-						<th>Nom</th>
+						<th class="text-center">Nom</th>
+					</tr>
+				</thead>
+				<!-- Contenu du tableau -->
+				<tbody>
+					<tr th:each="carte : ${cartes}">
+						<td class="col1">[[${ carte.id }]]</td>
+						<td class="text-center">[[${ carte.libelle }]]</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<table sec:authorize="hasRole('ROLE_ADMIN')" id="cartes" class="table table-striped">
+				<!-- En-tÃªte du tableau (le titre des colonnes) -->
+				<thead>
+					<tr>
+						<th class="col1">id</th>
+						<th class="text-center">Nom</th>
 						<th class="col3"></th>
 					</tr>
 				</thead>
@@ -59,10 +57,10 @@
 				<tbody>
 					<tr th:each="carte : ${cartes}">
 						<td class="col1">[[${ carte.id }]]</td>
-						<td>[[${ carte.libelle }]]</td>
+						<td class="text-center">[[${ carte.libelle }]]</td>
 						<td class="col3">
-							<a th:href="@{carte/editer/{id}(id=${ carte.id })}" class="btn btn-info" role="button">Editer</a>
-							<a th:href="@{carte/supprimer/{id}(id=${ carte.id })}" class="btn btn-danger" role="button">Supprimer</a>
+							<a th:href="@{/carte/editer/{id}(id=${ carte.id })}" class="btn btn-info" role="button">Editer</a>
+							<a th:href="@{/carte/supprimer/{id}(id=${ carte.id })}" class="btn btn-danger" role="button">Supprimer</a>
 						</td>
 					</tr>
 				</tbody>

@@ -1,20 +1,22 @@
 package fr.codenames.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.codenames.dao.IDAOJoueur;
+import fr.codenames.model.Joueur;
 
 @Controller
 @RequestMapping("/inscription")
 public class InscriptionController {
 	@Autowired
-	private IDAOJoueur daoJoueur;
+	private IDAOJoueur daoUtilisateur;
 	
 	@GetMapping({ "" })
 	public String inscriptionJoueur() {
@@ -22,24 +24,10 @@ public class InscriptionController {
 	}
 
 	@PostMapping("")
-	public String inscriptionJoueur(@RequestParam String nom,
-									@RequestParam String prenom, 
-									@RequestParam String email, 
-									@RequestParam String userName,
-									@RequestParam String pwd,
-									@RequestParam String pwd2, Model model) {
-		
-		if(pwd!=pwd2) {
-			String msgPwd = "Les mots de passe doivent correspondrent!";
-			model.addAttribute("msgPwd", msgPwd);
-			return "inscription";
-		}
-		
-		
-		
-		
-		
-		return pwd;
-	
+	public String inscriptionJoueur(@ModelAttribute Joueur joueur, Model model) {
+			BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+			joueur.setPassword(bcrypt.encode(joueur.getPassword()));
+			daoUtilisateur.save(joueur);
+			return "redirect:connexion";
 	}
 }
