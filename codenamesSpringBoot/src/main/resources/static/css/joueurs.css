@@ -6,24 +6,7 @@ h2 {
 	color: rgb(166,42,19);
 }
 
-.btn-sucess {	 
-	position: relative; 
-	top: 0; 
-	padding: 5px 15px; 
-	border-radius: 4px; 
-	background: rgb(124, 16, 16); 
-	color: white; 
-	border: none; 
-	box-shadow: 1px 1px #EEE; 
-	cursor: pointer; 
-	transition: all 0.25s ease; 
-} 
- 
-.btn-sucess:hover{ 
-	top: -2px; 
-	color: white; 
-	box-shadow: 2px 2px #EEE; 
-} 
+
 
 table thead {
 	background-color: rgb(124, 16, 16);
@@ -67,8 +50,6 @@ a.btn-danger{
 	cursor: pointer;
 	transition: all 0.25s ease;
 }
-
-
 
 a.btn-danger:hover{
 	position: relative;
