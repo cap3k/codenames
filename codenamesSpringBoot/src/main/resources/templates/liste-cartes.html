@@ -5,7 +5,6 @@
 		<meta charset="UTF-8" />
 		<title>Code Names</title>
 		<meta name="Description" content="Jouez à code names">
-		<!-- <base href="/codenames-3-web/"> -->
 		<link rel="stylesheet" 
 				href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
 				integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" 
@@ -15,7 +14,7 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg">
-			<a class="navbar-brand" href="accueil.html">Accueil</a>
+			<a class="navbar-brand" href="accueil">Accueil</a>
 			<!-- Bouton "hamburger" qui s'active si l'écran est trop petit -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarNav" aria-controls="navbarNav"
@@ -25,12 +24,12 @@
 			<!-- Menu à proprement parler -->
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item active"><a class="nav-link" href="carte">Gestion des cartes</a></li>
-					<li class="nav-item"><a class="nav-link" href="plateau">Jouer</a></li>
-					<li class="nav-item"><a class="nav-link" href="connexion">Déconnexion</a></li>
+					<li class="nav-item active"><a class="nav-link" href="/carte">Gestion des cartes</a></li>
+					<li class="nav-item"><a class="nav-link" href="/plateau">Jouer</a></li>
+					<li class="nav-item"><a class="nav-link" href="/connexion">Déconnexion</a></li>
 				</ul>
 			</div>
-			<img class="avatar" src="images/codenames-logopng.png"/>
+			<img class="avatar" src="/images/codenames-logopng.png"/>
 		</nav>
 		<header>
 			<h1 class="text-center">Gestion des cartes</h1>
@@ -38,7 +37,7 @@
 		<p></p>
 		<section class="container" id="ajouterCarte">
 			<p>
-				<a href="carte/ajouter" class="btn btn-sucess" role="button">Ajouter une carte</a>
+				<a href="/carte/ajouter" class="btn btn-sucess" role="button">Ajouter une carte</a>
 			</p>
 		</section>
 		
@@ -77,8 +76,8 @@
 						<td class="col1">[[${ carte.id }]]</td>
 						<td class="text-center">[[${ carte.libelle }]]</td>
 						<td class="col3">
-							<a th:href="@{carte/editer/{id}(id=${ carte.id })}" class="btn btn-info" role="button">Editer</a>
-							<a th:href="@{carte/supprimer/{id}(id=${ carte.id })}" class="btn btn-danger" role="button">Supprimer</a>
+							<a th:href="@{/carte/editer/{id}(id=${ carte.id })}" class="btn btn-info" role="button">Editer</a>
+							<a th:href="@{/carte/supprimer/{id}(id=${ carte.id })}" class="btn btn-danger" role="button">Supprimer</a>
 						</td>
 					</tr>
 				</tbody>
