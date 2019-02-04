@@ -28,10 +28,6 @@ import fr.codenames.model.Grille;
 import fr.codenames.model.Participation;
 import fr.codenames.model.Partie;
 
-
-
-
-
 @Controller
 public class PlateauController {
 	
@@ -49,8 +45,9 @@ public class PlateauController {
 		String equipe;
 		model.addAttribute("cases", daoGrille.findCaseByGrilleID(id));
 		if(equipeId==false) {
-		 equipe="ROUGE";
-		}else {
+			equipe="ROUGE";
+		} 
+		else {
 			equipe="BLEUE";
 		}
 		model.addAttribute("equipe", equipe);
@@ -59,18 +56,14 @@ public class PlateauController {
 		model.addAttribute("grille", id);
 		
 		return "plateau";
-		}
+	}
 	
 	@CrossOrigin
 	@PostMapping({"/plateau"})
 	@ResponseBody
 	public String revelerCouleur(@RequestBody CaseAReveler maCase) {
 		
-		
-	
     return daoGrille.findById(maCase.getGrille()).get().getCases().get(maCase.getPos()).getCouleur().toString();
-		
-
 	}
 	
 	
