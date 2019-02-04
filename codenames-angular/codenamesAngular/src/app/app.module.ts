@@ -5,9 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlateauComponent } from './plateau/plateau.component';
 import { AppConfigService } from './app-config.service';
+
 import {HttpClientModule} from '@angular/common/http';
 import { JeuComponent } from './jeu/jeu.component';
 import { ChatComponent } from './chat/chat.component';
+
+import { HttpClientModule } from '@angular/common/http';
+
 
 const routes: Routes = [
     { path: 'plateau/:id', component: PlateauComponent },
