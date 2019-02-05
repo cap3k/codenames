@@ -1,21 +1,17 @@
 <header>
 	<h1 class="text-center">Chat du jeu</h1>
 </header>
-<section class="container float-center" id="affichageChat">
-	<div *ngFor="let c of chatService.findAllAsync() | async" class="chat_list ">
-		<div class="chat_id">
-			<span>{{c.joueur.username}} - partie {{c.partie.id}}</span><br>
-			<span>{{c.contenu}}</span>
+
+	<section class="container float-center" id="affichageChat">
+		<div *ngFor="let c of chatService.findAllAsync() | async" id="chat_list ">
+				<div id="joueur">{{c.joueur.username}} - partie {{c.partie.id}}</div>
+				<div id="message">{{c.contenu}}</div>
+				<br>
 		</div>
-		<br>
-	</div>
-</section>
-<section class="container float-center" id="saisieMessage">
-	<div class="form-group row">
-		<label class="col-sm-3 col-form-label">Saisie du message</label>
-		<div class="col-sm-9">
-			<input type="text" class="form-control" id="contenu" [(ngModel)]="chat.contenu" />
-			<button (click)="ajouterChat()" class="btn btn-sucess float-right">Envoyer</button>
+	</section>
+	<section class="container" id="saisieMessage">
+		<div class="row">
+				<input type="text" class="form-control" id="contenu" [(ngModel)]="chat.contenu" />
+				<button (click)="ajouterChat()" class="btn btn-sucess pull-right">Envoyer</button>
 		</div>
-	</div>
-</section>
+	</section>
