@@ -10,10 +10,15 @@ import { ChatService } from '../chat.service'
   providers: [ ChatService ]
 })
 export class ChatComponent implements OnInit {
+  private chat: Chat = new Chat("");
 
   constructor(private chatService: ChatService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
+  ajouterChat(){
+    this.chat.partie = {id: 1};
+    this.chat.joueur = {id: 7};
+    this.chatService.save(this.chat);
+  }
 }

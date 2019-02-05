@@ -9,5 +9,5 @@ export class Chat {
   public partie;
   public joueur;
   // public fournisseur;
-  constructor(public joueur?: number, public partie?: number, public contenu?: string){ }
+  constructor(public contenu?: string){ }
 }

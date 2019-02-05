@@ -4,17 +4,18 @@
 <section class="container float-center" id="affichageChat">
 	<div *ngFor="let c of chatService.findAllAsync() | async" class="chat_list ">
 		<div class="chat_id">
-			<span>{{c.joueur.username}} - partie {{c.partie.id}}</span>
-			<p>{{c.contenu}}</p>
+			<span>{{c.joueur.username}} - partie {{c.partie.id}}</span><br>
+			<span>{{c.contenu}}</span>
 		</div>
+		<br>
 	</div>
 </section>
 <section class="container float-center" id="saisieMessage">
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">Saisie du message</label>
 		<div class="col-sm-9">
-			<input type="text" name="contenu" value=""/>
-			<input class="btn btn-sucess float-right" type="submit" value="Envoyer"/>
+			<input type="text" class="form-control" id="contenu" [(ngModel)]="chat.contenu" />
+			<button (click)="ajouterChat()" class="btn btn-sucess float-right">Envoyer</button>
 		</div>
 	</div>
 </section>

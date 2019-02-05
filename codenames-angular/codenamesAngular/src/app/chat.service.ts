@@ -22,4 +22,9 @@ export class ChatService {
     this.chatAsync = null;
   }
 
+  save(chat: Chat){
+      this.httpClient
+          .post("http://localhost:8080/api/chat", chat)
+          .subscribe(resp => this.refresh());
+  }
 }
