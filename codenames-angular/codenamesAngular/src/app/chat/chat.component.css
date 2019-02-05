@@ -1,0 +1,10 @@
+#affichageChat{
+  width: 50%;
+  height: 50%;
+  overflow: scroll;
+}
+
+#saisieMessage {
+  width: 50%;
+  height: 50%;
+}

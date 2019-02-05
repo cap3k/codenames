@@ -14,17 +14,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-	@Configuration
-	@Order(1)
-	public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
-		protected void configure(HttpSecurity http) throws Exception {
-			http.antMatcher("/api/**").authorizeRequests()
-				.antMatchers(HttpMethod.OPTIONS).permitAll()
-				.anyRequest().hasAnyRole("ADMIN", "USER")
-				.and().httpBasic()
-				.and().csrf().disable();
-		}
-	}
+//	@Configuration
+//	@Order(1)
+//	public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
+//		protected void configure(HttpSecurity http) throws Exception {
+//			http.antMatcher("/api/**").authorizeRequests()
+//				.antMatchers(HttpMethod.OPTIONS).permitAll()
+//				.anyRequest().hasAnyRole("ADMIN", "USER")
+//				.and().httpBasic()
+//				.and().csrf().disable();
+//		}
+//	}
 	
 	@Configuration
 	public static class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {

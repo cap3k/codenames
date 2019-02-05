@@ -6,6 +6,10 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.codenames.projection.Views;
+
 @Entity
 @Table(name="partie")
 public class Partie {
@@ -13,6 +17,7 @@ public class Partie {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="PAR_ID")
+	@JsonView(Views.Common.class)
 	private int id;
 	
 	@ManyToOne

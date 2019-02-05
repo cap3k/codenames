@@ -4,11 +4,16 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import fr.codenames.projection.Views;
+
 @MappedSuperclass
 public abstract class Utilisateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "UTI_ID")
+	@JsonView(Views.Common.class)
 	private int id;
 	
 	@NotEmpty
@@ -21,6 +26,7 @@ public abstract class Utilisateur {
 	
 	@NotEmpty(message="Le nom d'utilisateur doit etre saisi")
 	@NotNull
+	@JsonView(Views.Message.class)
 	private String username;
 	
 	@NotEmpty(message="Le mot de passe doit etre saisi")

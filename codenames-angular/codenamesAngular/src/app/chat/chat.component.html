@@ -1,3 +1,20 @@
-<p>
-  chat works!
-</p>
+<header>
+	<h1 class="text-center">Chat du jeu</h1>
+</header>
+<section class="container float-center" id="affichageChat">
+	<div *ngFor="let c of chatService.findAllAsync() | async" class="chat_list ">
+		<div class="chat_id">
+			<span>{{c.joueur.username}} - partie {{c.partie.id}}</span>
+			<p>{{c.contenu}}</p>
+		</div>
+	</div>
+</section>
+<section class="container float-center" id="saisieMessage">
+	<div class="form-group row">
+		<label class="col-sm-3 col-form-label">Saisie du message</label>
+		<div class="col-sm-9">
+			<input type="text" name="contenu" value=""/>
+			<input class="btn btn-sucess float-right" type="submit" value="Envoyer"/>
+		</div>
+	</div>
+</section>
